@@ -6,21 +6,42 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown.tsx';
+import LocationList from '../../components/LocationItem';
+import { wishList } from '../../store/slices/LocationSlice';
 
-interface Test {
-  pm10Grade: string;
+export interface Post {
+  provinceName: string;
+  fineDust: string;
+  isCheck: boolean;
+}
+
+interface PostDataList {
   stationName: string;
+  pm10Grade: string;
+  dataTime: string;
+  pm25Value: string;
+}
+
+interface LocationFineDustInfo {
+  cityName: string;
+  dateTime: string;
+  fineDust: string;
+  fineDustConcentration: string;
+  isCheck: boolean;
+  provinceName: string;
 }
 
 function Location() {
   const url = import.meta.env.VITE_SERVICE_URL;
   const [postData, setPostData] = useState([]);
-
   const [agedropdownVisibility, setAgeDropdownVisibility] = useState(false);
   const [cityName, setCityName] = useState('서울');
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
   const [dropDownList, setDropDownList] = useState([]);
+  const [locationFineDustInfo, setLocationFineDustInfo] = useState([]);
+  const dispatch = useDispatch();
 
   const userChangeCity = () => {
     setAgeDropdownVisibility(!agedropdownVisibility);
@@ -29,16 +50,16 @@ function Location() {
   const userSelectCity = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    const { textContent }: any = e.target;
-    setCityName(textContent);
+    const { textContent } = e.target as HTMLButtonElement;
+    setCityName(textContent as string);
     setAgeDropdownVisibility(!agedropdownVisibility);
   };
 
   useEffect(() => {
-    const filterCityList: any = cityList.current.filter((item) => {
+    const filterCityList = cityList.current.filter((item) => {
       return item !== cityName;
     });
-    setDropDownList(filterCityList);
+    setDropDownList(filterCityList as never);
   }, [cityName]);
 
   const getParameters = useMemo(() => {
@@ -66,6 +87,32 @@ function Location() {
     fetchData();
   }, [fetchData]);
 
+  useEffect(() => {
+    const postDataList = postData.map((item: PostDataList) => {
+      return {
+        cityName,
+        provinceName: item.stationName,
+        fineDust: item.pm10Grade,
+        dateTime: item.dataTime,
+        fineDustConcentration: item.pm25Value,
+        isCheck: false,
+      };
+    });
+    setLocationFineDustInfo(postDataList as never);
+  }, [postData, cityName]);
+
+  useEffect(() => {
+    dispatch(wishList(locationFineDustInfo));
+  }, [locationFineDustInfo, dispatch]);
+
+  const cityCheckHandler = (id: string) => {
+    setLocationFineDustInfo(
+      locationFineDustInfo.map((item: LocationFineDustInfo) =>
+        item.provinceName === id ? { ...item, isCheck: !item.isCheck } : item
+      ) as never
+    );
+  };
+
   return (
     <div>
       <ul>
@@ -81,17 +128,12 @@ function Location() {
             </li>
           ))}
         </Dropdown>
-        {postData.map((post: Test) => (
-          <div key={post.stationName}>
-            <p>
-              {post.pm10Grade === '1' ? '좋음' : ''}
-              {post.pm10Grade === '2' ? '보통' : ''}
-              {post.pm10Grade === '3' ? '한때나쁨' : ''}
-              {post.pm10Grade === '4' ? '나쁨' : ''}
-              {post.pm10Grade === '5' ? '매우나쁨' : ''}
-              {post.pm10Grade === null ? '알수없음' : ''}
-            </p>
-          </div>
+        {locationFineDustInfo.map((post: Post) => (
+          <LocationList
+            key={post.provinceName}
+            post={post}
+            cityCheckHandler={cityCheckHandler}
+          />
         ))}
       </ul>
     </div>
