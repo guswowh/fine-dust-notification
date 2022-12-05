@@ -12,7 +12,7 @@ import LocationList from '../../components/LocationItem';
 import { wishList } from '../../store/slices/LocationSlice';
 
 export interface Post {
-  provinceName: string;
+  stationName: string;
   fineDust: string;
   isCheck: boolean;
 }
@@ -30,37 +30,18 @@ interface LocationFineDustInfo {
   fineDust: string;
   fineDustConcentration: string;
   isCheck: boolean;
-  provinceName: string;
+  stationName: string;
 }
 
 function Location() {
   const url = import.meta.env.VITE_SERVICE_URL;
   const [postData, setPostData] = useState([]);
-  const [agedropdownVisibility, setAgeDropdownVisibility] = useState(false);
+  const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const [cityName, setCityName] = useState('서울');
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
   const [dropDownList, setDropDownList] = useState([]);
   const [locationFineDustInfo, setLocationFineDustInfo] = useState([]);
   const dispatch = useDispatch();
-
-  const userChangeCity = () => {
-    setAgeDropdownVisibility(!agedropdownVisibility);
-  };
-
-  const userSelectCity = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const { textContent } = e.target as HTMLButtonElement;
-    setCityName(textContent as string);
-    setAgeDropdownVisibility(!agedropdownVisibility);
-  };
-
-  useEffect(() => {
-    const filterCityList = cityList.current.filter((item) => {
-      return item !== cityName;
-    });
-    setDropDownList(filterCityList as never);
-  }, [cityName]);
 
   const getParameters = useMemo(() => {
     return {
@@ -88,10 +69,17 @@ function Location() {
   }, [fetchData]);
 
   useEffect(() => {
+    const filterCityList = cityList.current.filter((item) => {
+      return item !== cityName;
+    });
+    setDropDownList(filterCityList as never);
+  }, [cityName]);
+
+  useEffect(() => {
     const postDataList = postData.map((item: PostDataList) => {
       return {
         cityName,
-        provinceName: item.stationName,
+        stationName: item.stationName,
         fineDust: item.pm10Grade,
         dateTime: item.dataTime,
         fineDustConcentration: item.pm25Value,
@@ -105,10 +93,22 @@ function Location() {
     dispatch(wishList(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
 
+  const userChangeCity = () => {
+    setCityDropdownVisibility(!cityDropdownVisibility);
+  };
+
+  const userSelectCity = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const { textContent } = e.target as HTMLButtonElement;
+    setCityName(textContent as string);
+    setCityDropdownVisibility(!cityDropdownVisibility);
+  };
+
   const cityCheckHandler = (id: string) => {
     setLocationFineDustInfo(
       locationFineDustInfo.map((item: LocationFineDustInfo) =>
-        item.provinceName === id ? { ...item, isCheck: !item.isCheck } : item
+        item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
       ) as never
     );
   };
@@ -119,7 +119,7 @@ function Location() {
         <button type="button" onClick={userChangeCity}>
           {cityName}
         </button>
-        <Dropdown visibility={agedropdownVisibility}>
+        <Dropdown visibility={cityDropdownVisibility}>
           {dropDownList.map((item) => (
             <li key={item}>
               <button type="button" onClick={userSelectCity}>
@@ -128,14 +128,14 @@ function Location() {
             </li>
           ))}
         </Dropdown>
-        {locationFineDustInfo.map((post: Post) => (
-          <LocationList
-            key={post.provinceName}
-            post={post}
-            cityCheckHandler={cityCheckHandler}
-          />
-        ))}
       </ul>
+      {locationFineDustInfo.map((post: Post) => (
+        <LocationList
+          key={post.stationName}
+          post={post}
+          cityCheckHandler={cityCheckHandler}
+        />
+      ))}
     </div>
   );
 }
