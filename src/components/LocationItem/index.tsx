@@ -1,4 +1,3 @@
-// import { Post } from '../../pages/Locations';
 import { useLocation } from 'react-router-dom';
 
 interface CityCheckHandler {

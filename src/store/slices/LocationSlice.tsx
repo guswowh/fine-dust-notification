@@ -1,17 +1,27 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, current } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialState: LocationState = {
+  locationsList: [],
   checkedList: [],
 };
+
+interface LocationState {
+  locationsList: string[];
+  checkedList: string[];
+}
 
 export const LocationSlice = createSlice({
   name: 'location',
   initialState,
   reducers: {
+    locations: (state, action) => {
+      state.locationsList = action.payload;
+    },
     wishList: (state, action) => {
-      // console.log(action.payload);
+      state.checkedList = action.payload;
     },
   },
 });
 
-export const { wishList } = LocationSlice.actions;
+export const { locations, wishList } = LocationSlice.actions;

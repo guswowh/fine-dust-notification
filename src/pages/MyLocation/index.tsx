@@ -1,27 +1,26 @@
-import axios from 'axios';
 import React, {
-  useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
+  Dispatch,
+  SetStateAction,
 } from 'react';
-// import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown.tsx';
 import LocationList from '../../components/LocationItem';
-// import { wishList } from '../../store/slices/LocationSlice';
 
 export interface Post {
   stationName: string;
+  cityName: string;
   fineDust: string;
   isCheck: boolean;
 }
 
-interface PostDataList {
+interface Props {
+  cityName: string;
+  setCityName: Dispatch<SetStateAction<string>>;
+  locationFineDustInfo: never[];
   stationName: string;
-  pm10Grade: string;
-  dataTime: string;
-  pm25Value: string;
+  setStationName: Dispatch<SetStateAction<string>>;
 }
 
 interface LocationFineDustInfo {
@@ -33,46 +32,25 @@ interface LocationFineDustInfo {
   stationName: string;
 }
 
-function MyLocation() {
-  const url = import.meta.env.VITE_SERVICE_URL;
-  const [postData, setPostData] = useState([]);
+interface DropDown {
+  stationName: string;
+}
+
+function MyLocation({
+  cityName,
+  setCityName,
+  locationFineDustInfo,
+  stationName,
+  setStationName,
+}: // stationList,
+Props) {
   const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const [stationDropdownVisibility, setStationDropdownVisibility] =
     useState(false);
-  const [cityName, setCityName] = useState('서울');
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
-  const stationList: React.MutableRefObject<string[]> = useRef([]);
-  const [stationName, setStationName] = useState('');
   const [dropDownCityList, setDropDownCityList] = useState([]);
   const [dropDownStationList, setDropDownStationList] = useState([]);
-  const [locationFineDustInfo, setLocationFineDustInfo] = useState([]);
   const [stationFineDustInfo, setStationFineDustInfo] = useState([]);
-  // const dispatch = useDispatch();
-
-  const getParameters = useMemo(() => {
-    return {
-      serviceKey:
-        'B32FyO4r1il7R2cjyPyL1YCjNknWvY+7eQ66ZFvPPog06QXvBZ4F65RJxbHjwJ01o7iXCsS71hX367sokvnHcw==',
-      returnType: 'json',
-      numOfRows: '100',
-      pageNo: '1',
-      sidoName: cityName,
-      ver: '1.0',
-    };
-  }, [cityName]);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await axios.get(url, { params: getParameters }); // API 호출
-      setPostData(response.data.response.body.items);
-    } catch (e) {
-      console.log(e);
-    }
-  }, [getParameters, url]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   useEffect(() => {
     const filterCityList = cityList.current.filter((item) => {
@@ -82,27 +60,16 @@ function MyLocation() {
   }, [cityName]);
 
   useEffect(() => {
-    const filterStationList = stationList.current.filter((item) => {
-      return item !== stationName;
+    const filter = locationFineDustInfo.filter((item: DropDown) => {
+      return item.stationName !== stationName;
     });
-    setDropDownStationList(filterStationList as never);
-  }, [stationName]);
 
-  useEffect(() => {
-    const postDataList = postData.map((item: PostDataList) => {
-      stationList.current = [...stationList.current, item.stationName];
-      return {
-        cityName,
-        stationName: item.stationName,
-        fineDust: item.pm10Grade,
-        dateTime: item.dataTime,
-        fineDustConcentration: item.pm25Value,
-        isCheck: false,
-      };
+    const filterData = filter.map((item: DropDown) => {
+      return item.stationName;
     });
-    setStationName(postDataList[0]?.stationName);
-    setLocationFineDustInfo(postDataList as never);
-  }, [postData, cityName]);
+
+    setDropDownStationList(filterData as never);
+  }, [locationFineDustInfo, stationName]);
 
   useEffect(() => {
     const filterPostDataList = locationFineDustInfo.filter(
@@ -112,10 +79,6 @@ function MyLocation() {
     );
     setStationFineDustInfo(filterPostDataList);
   }, [stationName, locationFineDustInfo]);
-
-  // useEffect(() => {
-  //   dispatch(wishList(locationFineDustInfo));
-  // }, [locationFineDustInfo, dispatch]);
 
   const userChangeCity = () => {
     setCityDropdownVisibility(!cityDropdownVisibility);
@@ -140,14 +103,6 @@ function MyLocation() {
     setStationName(textContent as string);
     setStationDropdownVisibility(!stationDropdownVisibility);
   };
-
-  // const cityCheckHandler = (id: string) => {
-  //   setLocationFineDustInfo(
-  //     locationFineDustInfo.map((item: LocationFineDustInfo) =>
-  //       item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
-  //     ) as never
-  //   );
-  // };
 
   return (
     <div>

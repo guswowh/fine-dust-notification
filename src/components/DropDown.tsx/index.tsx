@@ -5,8 +5,8 @@ const DropdownContainer = styled.article`
   position: relative;
 `;
 interface Props {
-  visibility: any;
-  children: any;
+  visibility: boolean;
+  children: React.ReactNode;
 }
 
 function Dropdown({ visibility, children }: Props) {

@@ -7,7 +7,7 @@ import { LocationSlice } from './slices/LocationSlice';
 const logger = createLogger();
 
 const rootReducer = combineReducers({
-  wishList: LocationSlice.reducer,
+  LocationSlice: LocationSlice.reducer,
 });
 
 const store = configureStore({
