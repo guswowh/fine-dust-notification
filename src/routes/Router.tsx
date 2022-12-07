@@ -17,7 +17,16 @@ function Router() {
   const url = import.meta.env.VITE_SERVICE_URL;
   const [postData, setPostData] = useState([]);
   const [cityName, setCityName] = useState('서울');
-  const [locationFineDustInfo, setLocationFineDustInfo] = useState([]);
+  const [locationFineDustInfo, setLocationFineDustInfo] = useState([
+    {
+      cityName: '',
+      stationName: '',
+      fineDust: '',
+      dateTime: '',
+      fineDustConcentration: '',
+      isCheck: false,
+    },
+  ]);
   const [stationName, setStationName] = useState('');
 
   const getParameters = useMemo(() => {
@@ -57,7 +66,7 @@ function Router() {
       };
     });
     setStationName(postDataList[0]?.stationName);
-    setLocationFineDustInfo(postDataList as never);
+    setLocationFineDustInfo(postDataList);
   }, [postData, cityName]);
 
   return (
@@ -86,7 +95,15 @@ function Router() {
             />
           }
         />
-        <Route path="wish-list" element={<WishList />} />
+        <Route
+          path="wish-list"
+          element={
+            <WishList
+              locationFineDustInfo={locationFineDustInfo}
+              setLocationFineDustInfo={setLocationFineDustInfo}
+            />
+          }
+        />
       </Routes>
       <Gnb />
     </>

@@ -1,15 +1,17 @@
 import { useLocation } from 'react-router-dom';
 
+interface Post {
+  stationName: string;
+  fineDust: string;
+  isCheck: boolean;
+}
+
 interface CityCheckHandler {
   (id: string): void;
 }
 
 interface UserPost {
-  post: {
-    stationName: string;
-    fineDust: string;
-    isCheck: boolean;
-  };
+  post: Post;
   cityCheckHandler?: CityCheckHandler;
 }
 
@@ -26,7 +28,7 @@ function LocationList({ post, cityCheckHandler }: UserPost) {
         {post.fineDust === '5' ? '매우나쁨' : ''}
         {post.fineDust === null ? '알수없음' : ''}
       </p>
-      {location.pathname === '/location' ? (
+      {location.pathname !== '/my-location' ? (
         <button
           type="button"
           onClick={() =>

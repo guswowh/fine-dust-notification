@@ -8,9 +8,10 @@ import React, {
 import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown.tsx';
 import LocationList from '../../components/LocationItem';
+import { useAppSelector } from '../../store';
 import { wishList } from '../../store/slices/LocationSlice';
 
-export interface Post {
+interface Post {
   stationName: string;
   fineDust: string;
   isCheck: boolean;
@@ -19,17 +20,24 @@ export interface Post {
 interface Props {
   cityName: string;
   setCityName: Dispatch<SetStateAction<string>>;
-  locationFineDustInfo: never[];
-  setLocationFineDustInfo: Dispatch<SetStateAction<never[]>>;
+  locationFineDustInfo: {
+    cityName: string;
+    stationName: string;
+    fineDust: string;
+    dateTime: string;
+    fineDustConcentration: string;
+    isCheck: boolean;
+  }[];
+  setLocationFineDustInfo: Dispatch<SetStateAction<LocationFineDustInfo[]>>;
 }
 
 interface LocationFineDustInfo {
   cityName: string;
-  dateTime: string;
+  stationName: string;
   fineDust: string;
+  dateTime: string;
   fineDustConcentration: string;
   isCheck: boolean;
-  stationName: string;
 }
 
 function Location({
@@ -40,14 +48,15 @@ function Location({
 }: Props) {
   const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
-  const [dropDownList, setDropDownList] = useState([]);
+  const [dropDownList, setDropDownList] = useState(['']);
   const dispatch = useDispatch();
+  const location = useAppSelector((state) => state.LocationSlice);
 
   useEffect(() => {
     const filterCityList = cityList.current.filter((item) => {
       return item !== cityName;
     });
-    setDropDownList(filterCityList as never);
+    setDropDownList(filterCityList);
   }, [cityName]);
 
   useEffect(() => {
@@ -70,7 +79,7 @@ function Location({
     setLocationFineDustInfo(
       locationFineDustInfo.map((item: LocationFineDustInfo) =>
         item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
-      ) as never
+      )
     );
   };
 
@@ -90,7 +99,7 @@ function Location({
           ))}
         </Dropdown>
       </ul>
-      {locationFineDustInfo.map((post: Post) => (
+      {location.checkedList.map((post: Post) => (
         <LocationList
           key={post.stationName}
           post={post}

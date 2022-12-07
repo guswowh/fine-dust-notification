@@ -4,32 +4,31 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useMemo,
 } from 'react';
 import Dropdown from '../../components/DropDown.tsx';
 import LocationList from '../../components/LocationItem';
+
+interface Props {
+  cityName: string;
+  setCityName: Dispatch<SetStateAction<string>>;
+  locationFineDustInfo: {
+    cityName: string;
+    stationName: string;
+    fineDust: string;
+    dateTime: string;
+    fineDustConcentration: string;
+    isCheck: boolean;
+  }[];
+  stationName: string;
+  setStationName: Dispatch<SetStateAction<string>>;
+}
 
 export interface Post {
   stationName: string;
   cityName: string;
   fineDust: string;
   isCheck: boolean;
-}
-
-interface Props {
-  cityName: string;
-  setCityName: Dispatch<SetStateAction<string>>;
-  locationFineDustInfo: never[];
-  stationName: string;
-  setStationName: Dispatch<SetStateAction<string>>;
-}
-
-interface LocationFineDustInfo {
-  cityName: string;
-  dateTime: string;
-  fineDust: string;
-  fineDustConcentration: string;
-  isCheck: boolean;
-  stationName: string;
 }
 
 interface DropDown {
@@ -42,24 +41,30 @@ function MyLocation({
   locationFineDustInfo,
   stationName,
   setStationName,
-}: // stationList,
-Props) {
+}: Props) {
   const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const [stationDropdownVisibility, setStationDropdownVisibility] =
     useState(false);
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
-  const [dropDownCityList, setDropDownCityList] = useState([]);
-  const [dropDownStationList, setDropDownStationList] = useState([]);
-  const [stationFineDustInfo, setStationFineDustInfo] = useState([]);
+  const [stationFineDustInfo, setStationFineDustInfo] = useState([
+    {
+      cityName: '',
+      stationName: '',
+      fineDust: '',
+      dateTime: '',
+      fineDustConcentration: '',
+      isCheck: false,
+    },
+  ]);
 
-  useEffect(() => {
+  const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {
       return item !== cityName;
     });
-    setDropDownCityList(filterCityList as never);
+    return filterCityList;
   }, [cityName]);
 
-  useEffect(() => {
+  const dropDownStationList = useMemo(() => {
     const filter = locationFineDustInfo.filter((item: DropDown) => {
       return item.stationName !== stationName;
     });
@@ -67,16 +72,13 @@ Props) {
     const filterData = filter.map((item: DropDown) => {
       return item.stationName;
     });
-
-    setDropDownStationList(filterData as never);
+    return filterData;
   }, [locationFineDustInfo, stationName]);
 
   useEffect(() => {
-    const filterPostDataList = locationFineDustInfo.filter(
-      (item: LocationFineDustInfo) => {
-        return item.stationName === stationName;
-      }
-    );
+    const filterPostDataList = locationFineDustInfo.filter((item) => {
+      return item.stationName === stationName;
+    });
     setStationFineDustInfo(filterPostDataList);
   }, [stationName, locationFineDustInfo]);
 

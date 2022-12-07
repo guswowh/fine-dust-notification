@@ -8,7 +8,7 @@ const initialState: LocationState = {
 
 interface LocationState {
   locationsList: string[];
-  checkedList: string[];
+  checkedList: never[];
 }
 
 export const LocationSlice = createSlice({
