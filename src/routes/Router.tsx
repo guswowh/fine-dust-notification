@@ -78,7 +78,7 @@ function Router() {
     <>
       <Routes>
         <Route
-          path="my-location"
+          index
           element={
             <MyLocation
               cityName={cityName}

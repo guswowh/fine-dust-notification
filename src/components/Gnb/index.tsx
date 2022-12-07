@@ -6,7 +6,7 @@ function Gnb() {
   return (
     <div>
       <ul>
-        <Link to="my-location">
+        <Link to="/">
           <li>내 지역보기</li>
         </Link>
         <Link to="location">
