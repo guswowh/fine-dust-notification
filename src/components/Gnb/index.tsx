@@ -12,7 +12,7 @@ function Gnb() {
         <Link to="location">
           <li>전체 시도보기</li>
         </Link>
-        <Link to="wish-list">
+        <Link to="favorites">
           <li>즐겨찾기</li>
         </Link>
       </ul>

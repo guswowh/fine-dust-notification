@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown.tsx';
 import LocationList from '../../components/LocationItem';
 import { useAppSelector } from '../../store';
-import { wishList } from '../../store/slices/LocationSlice';
+import { favorites } from '../../store/slices/LocationSlice';
 
 interface Post {
   stationName: string;
@@ -29,6 +29,7 @@ interface Props {
     isCheck: boolean;
   }[];
   setLocationFineDustInfo: Dispatch<SetStateAction<LocationFineDustInfo[]>>;
+  isLoading: boolean;
 }
 
 interface LocationFineDustInfo {
@@ -45,6 +46,7 @@ function Location({
   setCityName,
   locationFineDustInfo,
   setLocationFineDustInfo,
+  isLoading,
 }: Props) {
   const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
@@ -60,7 +62,7 @@ function Location({
   }, [cityName]);
 
   useEffect(() => {
-    dispatch(wishList(locationFineDustInfo));
+    dispatch(favorites(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
 
   const userChangeCity = () => {
@@ -99,13 +101,19 @@ function Location({
           ))}
         </Dropdown>
       </ul>
-      {location.checkedList.map((post: Post) => (
-        <LocationList
-          key={post.stationName}
-          post={post}
-          cityCheckHandler={cityCheckHandler}
-        />
-      ))}
+      {isLoading ? (
+        '로딩중'
+      ) : (
+        <div>
+          {location.checkedList.map((post: Post) => (
+            <LocationList
+              key={post.stationName}
+              post={post}
+              cityCheckHandler={cityCheckHandler}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

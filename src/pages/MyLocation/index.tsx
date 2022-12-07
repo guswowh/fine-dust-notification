@@ -22,6 +22,7 @@ interface Props {
   }[];
   stationName: string;
   setStationName: Dispatch<SetStateAction<string>>;
+  isLoading: boolean;
 }
 
 export interface Post {
@@ -41,6 +42,7 @@ function MyLocation({
   locationFineDustInfo,
   stationName,
   setStationName,
+  isLoading,
 }: Props) {
   const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const [stationDropdownVisibility, setStationDropdownVisibility] =
@@ -140,9 +142,15 @@ function MyLocation({
           ))}
         </Dropdown>
       </ul>
-      {stationFineDustInfo.map((post: Post) => (
-        <LocationList key={post.stationName} post={post} />
-      ))}
+      {isLoading ? (
+        '로딩중'
+      ) : (
+        <div>
+          {stationFineDustInfo.map((post: Post) => (
+            <LocationList key={post.stationName} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

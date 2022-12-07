@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, Dispatch, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store';
 import LocationList from '../../components/LocationItem';
-import { wishList } from '../../store/slices/LocationSlice';
+import { favorites } from '../../store/slices/LocationSlice';
 
 interface Props {
   locationFineDustInfo: {
@@ -35,7 +35,7 @@ interface FilterItem {
   isCheck: boolean;
 }
 
-function WishList({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
+function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
   const location = useAppSelector((state) => state.LocationSlice);
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ function WishList({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
   }, [location.checkedList]);
 
   useEffect(() => {
-    dispatch(wishList(locationFineDustInfo));
+    dispatch(favorites(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
 
   const cityCheckHandler = (id: string) => {
@@ -71,4 +71,4 @@ function WishList({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
   );
 }
 
-export default WishList;
+export default Favorites;

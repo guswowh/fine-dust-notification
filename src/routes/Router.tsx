@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Gnb from '../components/Gnb';
 import MyLocation from '../pages/MyLocation';
 import Location from '../pages/Locations';
-import WishList from '../pages/WishList';
+import Favorites from '../pages/Favorites';
 
 interface PostDataList {
   stationName: string;
@@ -28,6 +28,8 @@ function Router() {
     },
   ]);
   const [stationName, setStationName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const getParameters = useMemo(() => {
     return {
@@ -43,11 +45,14 @@ function Router() {
 
   const fetchData = useCallback(async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(url, { params: getParameters }); // API 호출
       setPostData(response.data.response.body.items);
+      setIsLoading(false);
     } catch (e) {
-      console.log(e);
+      navigate('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getParameters, url]);
 
   useEffect(() => {
@@ -81,6 +86,7 @@ function Router() {
               locationFineDustInfo={locationFineDustInfo}
               stationName={stationName}
               setStationName={setStationName}
+              isLoading={isLoading}
             />
           }
         />
@@ -92,13 +98,14 @@ function Router() {
               setCityName={setCityName}
               locationFineDustInfo={locationFineDustInfo}
               setLocationFineDustInfo={setLocationFineDustInfo}
+              isLoading={isLoading}
             />
           }
         />
         <Route
-          path="wish-list"
+          path="favorites"
           element={
-            <WishList
+            <Favorites
               locationFineDustInfo={locationFineDustInfo}
               setLocationFineDustInfo={setLocationFineDustInfo}
             />
