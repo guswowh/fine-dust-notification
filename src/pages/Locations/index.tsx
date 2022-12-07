@@ -1,12 +1,12 @@
 import React, {
   useEffect,
   useRef,
-  useState,
   Dispatch,
   SetStateAction,
+  useMemo,
 } from 'react';
 import { useDispatch } from 'react-redux';
-import Dropdown from '../../components/DropDown.tsx';
+import Dropdown from '../../components/DropDown';
 import LocationList from '../../components/LocationItem';
 import { useAppSelector } from '../../store';
 import { favorites } from '../../store/slices/LocationSlice';
@@ -48,34 +48,20 @@ function Location({
   setLocationFineDustInfo,
   isLoading,
 }: Props) {
-  const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
-  const [dropDownList, setDropDownList] = useState(['']);
   const dispatch = useDispatch();
   const location = useAppSelector((state) => state.LocationSlice);
 
-  useEffect(() => {
+  const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {
       return item !== cityName;
     });
-    setDropDownList(filterCityList);
+    return filterCityList;
   }, [cityName]);
 
   useEffect(() => {
     dispatch(favorites(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
-
-  const userChangeCity = () => {
-    setCityDropdownVisibility(!cityDropdownVisibility);
-  };
-
-  const userSelectCity = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const { textContent } = e.target as HTMLButtonElement;
-    setCityName(textContent as string);
-    setCityDropdownVisibility(!cityDropdownVisibility);
-  };
 
   const cityCheckHandler = (id: string) => {
     setLocationFineDustInfo(
@@ -87,20 +73,11 @@ function Location({
 
   return (
     <div>
-      <ul>
-        <button type="button" onClick={userChangeCity}>
-          {cityName}
-        </button>
-        <Dropdown visibility={cityDropdownVisibility}>
-          {dropDownList.map((item) => (
-            <li key={item}>
-              <button type="button" onClick={userSelectCity}>
-                {item}
-              </button>
-            </li>
-          ))}
-        </Dropdown>
-      </ul>
+      <Dropdown
+        cityName={cityName}
+        setCityName={setCityName}
+        itemList={dropDownCityList}
+      />
       {isLoading ? (
         '로딩중'
       ) : (

@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
   useMemo,
 } from 'react';
-import Dropdown from '../../components/DropDown.tsx';
+import Dropdown from '../../components/DropDown';
 import LocationList from '../../components/LocationItem';
 
 interface Props {
@@ -44,9 +44,6 @@ function MyLocation({
   setStationName,
   isLoading,
 }: Props) {
-  const [cityDropdownVisibility, setCityDropdownVisibility] = useState(false);
-  const [stationDropdownVisibility, setStationDropdownVisibility] =
-    useState(false);
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
   const [stationFineDustInfo, setStationFineDustInfo] = useState([
     {
@@ -84,64 +81,18 @@ function MyLocation({
     setStationFineDustInfo(filterPostDataList);
   }, [stationName, locationFineDustInfo]);
 
-  const userChangeCity = () => {
-    setCityDropdownVisibility(!cityDropdownVisibility);
-  };
-
-  const userChangeStation = () => {
-    setStationDropdownVisibility(!stationDropdownVisibility);
-  };
-
-  const userSelectCity = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const { textContent } = e.target as HTMLButtonElement;
-    setCityName(textContent as string);
-    setCityDropdownVisibility(!cityDropdownVisibility);
-  };
-
-  const userSelectStation = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const { textContent } = e.target as HTMLButtonElement;
-    setStationName(textContent as string);
-    setStationDropdownVisibility(!stationDropdownVisibility);
-  };
-
   return (
     <div>
-      <ul>
-        <li>
-          <button type="button" onClick={userChangeCity}>
-            {cityName}
-          </button>
-        </li>
-        <Dropdown visibility={cityDropdownVisibility}>
-          {dropDownCityList.map((item) => (
-            <li key={item}>
-              <button type="button" onClick={userSelectCity}>
-                {item}
-              </button>
-            </li>
-          ))}
-        </Dropdown>
-      </ul>
-      <ul>
-        <li>
-          <button type="button" onClick={userChangeStation}>
-            {stationName}
-          </button>
-        </li>
-        <Dropdown visibility={stationDropdownVisibility}>
-          {dropDownStationList.map((item) => (
-            <li key={item}>
-              <button type="button" onClick={userSelectStation}>
-                {item}
-              </button>
-            </li>
-          ))}
-        </Dropdown>
-      </ul>
+      <Dropdown
+        cityName={cityName}
+        setCityName={setCityName}
+        itemList={dropDownCityList}
+      />
+      <Dropdown
+        cityName={stationName}
+        setCityName={setStationName}
+        itemList={dropDownStationList}
+      />
       {isLoading ? (
         '로딩중'
       ) : (
