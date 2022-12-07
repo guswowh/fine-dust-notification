@@ -1,23 +1,10 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
-
-const DropdownContainer = styled.article`
-  position: relative;
-`;
+import DropDownList from './DropDownList';
 
 interface Props {
   cityName: string;
   setCityName: Dispatch<SetStateAction<string>>;
   itemList: string[];
-}
-
-interface ListProps {
-  visibility: boolean;
-  children: React.ReactNode;
-}
-
-function DropdownList({ visibility, children }: ListProps) {
-  return <DropdownContainer>{visibility && children}</DropdownContainer>;
 }
 
 function Dropdown({ cityName, setCityName, itemList }: Props) {
@@ -41,7 +28,7 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
         </button>
       </li>
       <li>
-        <DropdownList visibility={dropDownVisibility}>
+        <DropDownList visibility={dropDownVisibility}>
           {itemList?.map((item) => (
             <li key={item}>
               <button type="button" onClick={userSelectStation}>
@@ -49,7 +36,7 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
               </button>
             </li>
           ))}
-        </DropdownList>
+        </DropDownList>
       </li>
     </ul>
   );
