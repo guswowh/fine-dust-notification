@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
       justify-content: center;
       background: #9bb4f6;
       box-shadow: inset -12px -12px 16px rgba(255, 255, 255, 0.14),
-        inset 12px 12px 18px rgba(13, 39, 80, 0.16);
+        inset 4px 4px 10px rgba(13, 39, 80, 0.26);
       border-radius: 2.4rem;
       margin-right: 1.6rem;
       svg {
@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
       box-shadow: ${(props: Props) =>
         props.location === '/'
           ? '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'
-          : 'inset -12px -12px 16px rgba(255, 255, 255, 0.14), inset 12px 12px 18px rgba(13, 39, 80, 0.16);'};
+          : 'inset -12px -12px 16px rgba(255, 255, 255, 0.14), inset 4px 4px 10px rgba(13, 39, 80, 0.26);'};
 
       background-color: ${(props) =>
         props.location === '/location' ? '#90ABF2' : '#9bb4f6'};
@@ -52,7 +52,7 @@ export const Wrapper = styled.div`
       box-shadow: ${(props) =>
         props.location === '/location'
           ? '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'
-          : 'inset -12px -12px 16px rgba(255, 255, 255, 0.14), inset 12px 12px 18px rgba(13, 39, 80, 0.16);'};
+          : 'inset -12px -12px 16px rgba(255, 255, 255, 0.14), inset 4px 4px 10px rgba(13, 39, 80, 0.26);'};
 
       background-color: ${(props) =>
         props.location === '/location' ? '#90ABF2' : '#9bb4f6'};
@@ -66,7 +66,7 @@ export const Wrapper = styled.div`
       box-shadow: ${(props) =>
         props.location === '/favorites'
           ? '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'
-          : 'inset -12px -12px 16px rgba(255, 255, 255, 0.14), inset 12px 12px 18px rgba(13, 39, 80, 0.16);'};
+          : 'inset -12px -12px 16px rgba(255, 255, 255, 0.14), inset 4px 4px 10px rgba(13, 39, 80, 0.26);'};
 
       background-color: ${(props) =>
         props.location === '/location' ? '#90ABF2' : '#9bb4f6'};

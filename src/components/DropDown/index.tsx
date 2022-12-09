@@ -1,5 +1,7 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
+import { DropDownUiOffIcon, DropDownUiOnIcon } from '../icons';
 import DropDownList from './DropDownList';
+import * as S from './style';
 
 interface Props {
   cityName: string;
@@ -9,8 +11,10 @@ interface Props {
 
 function Dropdown({ cityName, setCityName, itemList }: Props) {
   const [dropDownVisibility, setDropDownVisibility] = useState(false);
+  const [isDropDwon, setIsDropDwon] = useState(false);
   const userChangeCityHandler = () => {
     setDropDownVisibility(!dropDownVisibility);
+    setIsDropDwon(!isDropDwon);
   };
   const userSelectStation = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -21,24 +25,33 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
   };
 
   return (
-    <ul>
-      <li>
-        <button type="button" onClick={userChangeCityHandler}>
-          {cityName}
-        </button>
-      </li>
-      <li>
-        <DropDownList visibility={dropDownVisibility}>
-          {itemList?.map((item) => (
-            <li key={item}>
-              <button type="button" onClick={userSelectStation}>
-                {item}
-              </button>
-            </li>
-          ))}
-        </DropDownList>
-      </li>
-    </ul>
+    <S.Wrapper isDropDwon={isDropDwon}>
+      <ul>
+        <li>
+          <button
+            className="cityName"
+            type="button"
+            onClick={userChangeCityHandler}
+          >
+            {cityName}
+            {isDropDwon ? <DropDownUiOnIcon /> : <DropDownUiOffIcon />}
+          </button>
+        </li>
+        <li>
+          <DropDownList visibility={dropDownVisibility}>
+            <ul>
+              {itemList?.map((item) => (
+                <li key={item}>
+                  <button type="button" onClick={userSelectStation}>
+                    {item}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </DropDownList>
+        </li>
+      </ul>
+    </S.Wrapper>
   );
 }
 

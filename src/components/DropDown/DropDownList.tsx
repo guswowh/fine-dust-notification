@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 
 interface ListProps {
   visibility: boolean;
@@ -7,10 +7,7 @@ interface ListProps {
 }
 
 function DropDownList({ visibility, children }: ListProps) {
-  const DropdownContainer = styled.article`
-    position: relative;
-  `;
-  return <DropdownContainer>{visibility && children}</DropdownContainer>;
+  return <S.DropdownContainer>{visibility && children}</S.DropdownContainer>;
 }
 
 export default DropDownList;
