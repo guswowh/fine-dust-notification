@@ -1,22 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import * as S from './style'
+import { Link, useLocation } from 'react-router-dom';
+import { FavoritesIcon, LocationsIcon, MyLocationIcon } from '../icons';
+import * as S from './style';
 
 function Gnb() {
+  const location = useLocation();
+
   return (
-    <div>
+    <S.Wrapper location={location.pathname}>
       <ul>
         <Link to="/">
-          <li>내 지역보기</li>
+          <li>
+            <MyLocationIcon fillOpacity="100" />
+          </li>
         </Link>
         <Link to="location">
-          <li>전체 시도보기</li>
+          <li>
+            <LocationsIcon fillOpacity="100" />
+          </li>
         </Link>
         <Link to="favorites">
-          <li>즐겨찾기</li>
+          <li>
+            <FavoritesIcon fillOpacity="100" />
+          </li>
         </Link>
       </ul>
-    </div>
+    </S.Wrapper>
   );
 }
 
