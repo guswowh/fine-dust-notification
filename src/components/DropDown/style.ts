@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
 
 export const DropdownContainer = styled.article`
   & ul {
-    position: relative;
+    position: absolute;
     background: #ffffff;
     box-shadow: ${(props: Props) =>
       props.isDropDwon
@@ -39,6 +39,7 @@ export const DropdownContainer = styled.article`
     border-radius: 2.4rem;
     width: fit-content;
     height: 32.2108vh;
+    margin-top: 1.4rem;
     overflow: scroll;
     -ms-overflow-style: none;
     & li {

@@ -76,3 +76,265 @@ export function DropDownUiOffIcon() {
     </svg>
   );
 }
+
+export function GootUiIcon() {
+  return (
+    <svg viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_ii_11_323)">
+        <circle cx="136" cy="136" r="136" fill="#F0FAFF" />
+      </g>
+      <circle
+        cx="137"
+        cy="54"
+        r="2"
+        transform="rotate(90 137 54)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="137"
+        cy="162"
+        r="2"
+        transform="rotate(90 137 162)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="137"
+        cy="81"
+        r="2"
+        transform="rotate(90 137 81)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="110"
+        cy="81"
+        r="2"
+        transform="rotate(90 110 81)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="137"
+        cy="189"
+        r="2"
+        transform="rotate(90 137 189)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="137"
+        cy="108"
+        r="2"
+        transform="rotate(90 137 108)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="110"
+        cy="108"
+        r="2"
+        transform="rotate(90 110 108)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="137"
+        cy="216"
+        r="2"
+        transform="rotate(90 137 216)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="137"
+        cy="137"
+        r="2"
+        transform="rotate(-180 137 137)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="218"
+        cy="137"
+        r="2"
+        transform="rotate(-180 218 137)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="110"
+        cy="137"
+        r="2"
+        transform="rotate(-180 110 137)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="110"
+        cy="164"
+        r="2"
+        transform="rotate(-180 110 164)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="110"
+        cy="191"
+        r="2"
+        transform="rotate(-180 110 191)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="191"
+        cy="137"
+        r="2"
+        transform="rotate(-180 191 137)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="191"
+        cy="164"
+        r="2"
+        transform="rotate(-180 191 164)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="191"
+        cy="110"
+        r="2"
+        transform="rotate(-180 191 110)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="83"
+        cy="137"
+        r="2"
+        transform="rotate(-180 83 137)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="83"
+        cy="164"
+        r="2"
+        transform="rotate(-180 83 164)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="83"
+        cy="110"
+        r="2"
+        transform="rotate(-180 83 110)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="164"
+        cy="137"
+        r="2"
+        transform="rotate(-180 164 137)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="164"
+        cy="164"
+        r="2"
+        transform="rotate(-180 164 164)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="164"
+        cy="191"
+        r="2"
+        transform="rotate(-180 164 191)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="164"
+        cy="110"
+        r="2"
+        transform="rotate(-180 164 110)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="164"
+        cy="83"
+        r="2"
+        transform="rotate(-180 164 83)"
+        fill="#A8A8A8"
+      />
+      <circle
+        cx="56"
+        cy="137"
+        r="2"
+        transform="rotate(-180 56 137)"
+        fill="#A8A8A8"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_11_323"
+          x="-12"
+          y="-12"
+          width="296"
+          height="296"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_11_323"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_11_323"
+            result="effect2_innerShadow_11_323"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+export function OnCheckIcon() {
+  return (
+    <svg viewBox="0 0 76 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.50852 37.748L33.9244 62.4068C35.0208 63.4299 36.4681 64 37.9738 64C39.4795 64 40.9267 63.4299 42.0231 62.4068L68.439 37.748C72.8831 33.6114 75.3975 27.8085 75.3975 21.7425V20.8947C75.3975 10.6775 68.0151 1.96584 57.9428 0.284899C51.2767 -0.825986 44.4937 1.35193 39.728 6.11704L37.9738 7.87107L36.2195 6.11704C31.4539 1.35193 24.6708 -0.825986 18.0047 0.284899C7.93246 1.96584 0.550049 10.6775 0.550049 20.8947V21.7425C0.550049 27.8085 3.06446 33.6114 7.50852 37.748Z"
+        fill="#9CB5F7"
+      />
+    </svg>
+  );
+}
+
+export function OffCheckIcon() {
+  return (
+    <svg viewBox="0 0 75 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M35.6654 6.11687L37.2878 7.8709L39.0419 6.11979C43.9386 1.34736 50.7208 -0.824722 57.3862 0.284705C67.4572 1.96273 74.8388 10.6774 74.8388 20.8946V21.7424C74.8388 27.8084 72.3247 33.6114 67.8811 37.748L41.4683 62.4068C40.372 63.4299 38.9249 64 37.4194 64C35.9139 64 34.4668 63.4299 33.3705 62.4068L6.95621 37.748C2.5185 33.6114 0 27.8084 0 21.7424V20.8946C0 10.6774 7.38449 1.96273 17.4526 0.284705C23.9864 -0.824722 30.9002 1.34736 35.6654 6.11687C35.6654 6.11687 35.5338 6.11687 35.6654 6.11687ZM37.2878 17.7958L30.7102 10.9551C27.5383 7.91183 23.0363 6.46768 18.6074 7.20437C11.9201 8.31964 7.01614 14.1123 7.01614 20.8946V21.7424C7.01614 25.8644 8.72778 29.8109 11.7433 32.6174L37.4194 56.5892L63.1014 32.6174C66.1125 29.8109 67.8227 25.8644 67.8227 21.7424V20.8946C67.8227 14.1123 62.9114 8.31964 56.2314 7.20437C51.8025 6.46768 47.3005 7.91183 44.1286 10.9551L37.2878 17.7958Z"
+        fill="#9CB5F7"
+      />
+    </svg>
+  );
+}

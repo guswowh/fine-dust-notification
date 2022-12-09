@@ -8,23 +8,27 @@ function Gnb() {
 
   return (
     <S.Wrapper location={location.pathname}>
-      <ul>
-        <Link to="/">
-          <li>
-            <MyLocationIcon fillOpacity="100" />
-          </li>
-        </Link>
-        <Link to="location">
-          <li>
-            <LocationsIcon fillOpacity="100" />
-          </li>
-        </Link>
-        <Link to="favorites">
-          <li>
-            <FavoritesIcon fillOpacity="100" />
-          </li>
-        </Link>
-      </ul>
+      <div className="contents">
+        <ul>
+          <Link to="/">
+            <li>
+              <MyLocationIcon fillOpacity="100" />
+            </li>
+          </Link>
+          <Link to="location">
+            <li>
+              <LocationsIcon fillOpacity="100" />
+            </li>
+          </Link>
+          <Link to="favorites">
+            <li>
+              <FavoritesIcon fillOpacity="100" />
+            </li>
+          </Link>
+        </ul>
+      </div>
+
+      <div className="bgGradation" />
     </S.Wrapper>
   );
 }

@@ -16,9 +16,7 @@ html {
 body {
   margin: 0;
   max-width: 102.4rem;
-  height: 100vh;
   margin: 0 auto;
-  background: linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, #EAF0FF 100%);
 }
 input, textarea { 
   -moz-user-select: auto;
