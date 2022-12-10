@@ -17,4 +17,9 @@ export const Wrapper = styled.div`
       line-height: 7.4rem;
     }
   }
+  @media screen and (max-width: 390px) {
+    & .titleSpace {
+      height: 31.6351vh;
+    }
+  }
 `;

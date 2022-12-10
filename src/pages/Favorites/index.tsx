@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store';
 import { favorites } from '../../store/slices/LocationSlice';
 import LocationItemList from '../../components/LocationItemList';
+import TitleSpace from '../../components/TitleSpace';
 
 interface Props {
   locationFineDustInfo: {
@@ -60,6 +61,7 @@ function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
 
   return (
     <div>
+      <TitleSpace title="favorites" userName="hyun jea cho" />
       <LocationItemList
         mapList={filterList}
         cityCheckHandler={cityCheckHandler}

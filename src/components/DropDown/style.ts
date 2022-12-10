@@ -26,6 +26,11 @@ export const Wrapper = styled.div`
       }
     }
   }
+  @media screen and (max-width: 390px) {
+    & > ul > li:first-child .cityName {
+      height: 7.109vh;
+    }
+  }
 `;
 
 export const DropdownContainer = styled.div`
@@ -39,7 +44,6 @@ export const DropdownContainer = styled.div`
         : '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'};
     border-radius: 2.4rem;
     width: 100%;
-    height: 32.2108vh;
     margin-top: 1.4rem;
     overflow: scroll;
     z-index: 11111;

@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
     > ul {
       display: flex;
       justify-content: center;
-      font-size: 30px;
+      padding-top: 4rem;
 
       > a li {
         width: 22.4rem;
@@ -98,5 +98,17 @@ export const Wrapper = styled.div`
       #eaf0ff 100%
     );
     z-index: -111111;
+  }
+  @media screen and (max-width: 390px) {
+    & .contents {
+      height: 19.4313vh;
+      > ul {
+        padding-top: 3.3rem;
+      }
+    }
+    & .contents > ul > a li {
+      width: 13.6rem;
+      height: 11.8483vh;
+    }
   }
 `;

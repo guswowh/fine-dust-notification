@@ -9,8 +9,7 @@ ${reset}
   font-family: 'Pretendard Variable' !important;
 }
 html {
-  font-size: 62.5%;
-  /* rem 값의 기준을 잡기 위함 16px -> 10px */
+  font-size: 62.5%; // 10px
   background-color: #F4F6F9;
 }
 body {
@@ -36,5 +35,15 @@ button {
 a{
   text-decoration: none;
   color: inherit;
+}
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 50%; // 8px
+  }
+}
+@media screen and (max-width: 390px) {
+  html {
+    font-size: 37.5%; // 6px
+  }
 }
 `;

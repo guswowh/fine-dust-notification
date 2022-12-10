@@ -14,14 +14,14 @@ export const Wrapper = styled.div`
     height: 100%;
     background: #fff;
     box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #ffffff;
-    border-radius: 2.4rem;
+    border-radius: inherit;
     > ul.contents {
       position: relative;
       display: flex;
       height: 100%;
       align-items: center;
       > li:first-child svg {
-        width: 19.9122vh;
+        height: 19.9122vh;
         margin-left: 6.4rem;
       }
 
@@ -47,6 +47,25 @@ export const Wrapper = styled.div`
           right: 6.4rem;
           width: 6.4rem;
         }
+      }
+    }
+  }
+  @media screen and (max-width: 390px) {
+    height: 31.6351vh;
+    & .inner {
+      overflow: hidden;
+      ul.contents > li:first-child svg {
+        position: absolute;
+        right: -10rem;
+        bottom: -10rem;
+      }
+    }
+    & .inner > ul.contents > li:last-child {
+      margin-left: 6rem;
+      .checkIcon {
+        width: 6rem;
+        top: 6rem;
+        right: 6rem;
       }
     }
   }
