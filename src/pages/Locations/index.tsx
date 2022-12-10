@@ -7,9 +7,11 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown';
-import LocationList from '../../components/LocationItem';
+import LocationItem from '../../components/LocationItem';
+import TitleSpace from '../../components/TitleSpace';
 import { useAppSelector } from '../../store';
 import { favorites } from '../../store/slices/LocationSlice';
+import * as S from './style';
 
 interface Post {
   stationName: string;
@@ -72,26 +74,30 @@ function Location({
   };
 
   return (
-    <div>
-      <Dropdown
-        cityName={cityName}
-        setCityName={setCityName}
-        itemList={dropDownCityList}
-      />
+    <S.Wrapper>
+      <TitleSpace title="locations" userName="hyun jae cho" />
+      <ul className="menuSpace">
+        <li>
+          <Dropdown
+            cityName={cityName}
+            setCityName={setCityName}
+            itemList={dropDownCityList}
+          />
+        </li>
+      </ul>
+
       {isLoading ? (
         '로딩중'
       ) : (
-        <div>
+        <ul className="contents">
           {location.checkedList.map((post: Post) => (
-            <LocationList
-              key={post.stationName}
-              post={post}
-              cityCheckHandler={cityCheckHandler}
-            />
+            <li key={post.stationName}>
+              <LocationItem post={post} cityCheckHandler={cityCheckHandler} />
+            </li>
           ))}
-        </div>
+        </ul>
       )}
-    </div>
+    </S.Wrapper>
   );
 }
 

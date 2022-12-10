@@ -19,7 +19,7 @@ interface UserPost {
   cityCheckHandler?: CityCheckHandler;
 }
 
-function LocationList({ post, cityCheckHandler }: UserPost) {
+function LocationItem({ post, cityCheckHandler }: UserPost) {
   const location = useLocation();
 
   return (
@@ -65,8 +65,8 @@ function LocationList({ post, cityCheckHandler }: UserPost) {
   );
 }
 
-LocationList.defaultProps = {
+LocationItem.defaultProps = {
   cityCheckHandler: null,
 };
 
-export default LocationList;
+export default LocationItem;

@@ -7,7 +7,7 @@ import React, {
   useMemo,
 } from 'react';
 import Dropdown from '../../components/DropDown';
-import LocationList from '../../components/LocationItem';
+import LocationItem from '../../components/LocationItem';
 import TitleSpace from '../../components/TitleSpace';
 import * as S from './style';
 
@@ -108,7 +108,7 @@ function MyLocation({
       ) : (
         <div className="contents">
           {stationFineDustInfo.map((post: Post) => (
-            <LocationList key={post.stationName} post={post} />
+            <LocationItem key={post.stationName} post={post} />
           ))}
         </div>
       )}

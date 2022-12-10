@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, Dispatch, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store';
-import LocationList from '../../components/LocationItem';
+import LocationItem from '../../components/LocationItem';
 import { favorites } from '../../store/slices/LocationSlice';
 
 interface Props {
@@ -61,7 +61,7 @@ function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
   return (
     <div>
       {filterList.map((post: Post) => (
-        <LocationList
+        <LocationItem
           key={post.stationName}
           post={post}
           cityCheckHandler={cityCheckHandler}
