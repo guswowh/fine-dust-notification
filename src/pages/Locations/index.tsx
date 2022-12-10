@@ -7,17 +7,11 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown';
-import LocationItem from '../../components/LocationItem';
+import LocationItemList from '../../components/LocationItemList';
 import TitleSpace from '../../components/TitleSpace';
 import { useAppSelector } from '../../store';
 import { favorites } from '../../store/slices/LocationSlice';
 import * as S from './style';
-
-interface Post {
-  stationName: string;
-  fineDust: string;
-  isCheck: boolean;
-}
 
 interface Props {
   cityName: string;
@@ -89,13 +83,10 @@ function Location({
       {isLoading ? (
         '로딩중'
       ) : (
-        <ul className="contents">
-          {location.checkedList.map((post: Post) => (
-            <li key={post.stationName}>
-              <LocationItem post={post} cityCheckHandler={cityCheckHandler} />
-            </li>
-          ))}
-        </ul>
+        <LocationItemList
+          mapList={location.checkedList}
+          cityCheckHandler={cityCheckHandler}
+        />
       )}
     </S.Wrapper>
   );

@@ -2,16 +2,13 @@ import styled from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Wrapper = styled.div`
-  & .menuSpace {
-    width: calc(100% - 8rem);
-    margin: 0 4rem;
-    display: flex;
-
+  & > .contents {
+    padding-top: 4rem;
     > li {
-      width: 100%;
-      margin-right: 1.6rem;
+      padding-bottom: 2.4rem;
     }
     > li:last-child {
+      padding-bottom: 32.2108vh;
     }
   }
 `;
