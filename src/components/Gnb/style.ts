@@ -19,12 +19,12 @@ export const Wrapper = styled.div`
     );
     display: flex;
     justify-content: center;
-    ul {
+    > ul {
       display: flex;
       justify-content: center;
       font-size: 30px;
 
-      a li {
+      > a li {
         width: 22.4rem;
         height: 12.2987vh;
         display: flex;
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
           height: 38.1%;
         }
       }
-      a:nth-child(1) li {
+      > a:nth-child(1) li {
         box-shadow: ${(props: Props) =>
           props.location === '/'
             ? '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'
@@ -53,7 +53,7 @@ export const Wrapper = styled.div`
             props.location === '/' ? '1' : '0.7;'};
         }
       }
-      a:nth-child(2) li {
+      > a:nth-child(2) li {
         box-shadow: ${(props) =>
           props.location === '/location'
             ? '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'
@@ -67,7 +67,7 @@ export const Wrapper = styled.div`
             props.location === '/location' ? '1' : '0.7;'};
         }
       }
-      a:nth-child(3) li {
+      > a:nth-child(3) li {
         box-shadow: ${(props) =>
           props.location === '/favorites'
             ? '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'
@@ -81,7 +81,7 @@ export const Wrapper = styled.div`
             props.location === '/favorites' ? '1' : '0.7;'};
         }
       }
-      a:last-child li {
+      > a:last-child li {
         margin-right: 0;
       }
     }

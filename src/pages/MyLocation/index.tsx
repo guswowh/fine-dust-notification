@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import Dropdown from '../../components/DropDown';
 import LocationList from '../../components/LocationItem';
+import * as S from './style';
 
 interface Props {
   cityName: string;
@@ -82,27 +83,40 @@ function MyLocation({
   }, [stationName, locationFineDustInfo]);
 
   return (
-    <div>
-      <Dropdown
-        cityName={cityName}
-        setCityName={setCityName}
-        itemList={dropDownCityList}
-      />
-      <Dropdown
-        cityName={stationName}
-        setCityName={setStationName}
-        itemList={dropDownStationList}
-      />
+    <S.Wrapper>
+      <div className="titleSpace">
+        <div>
+          <p className="userName">hyun jae cho</p>
+          <h3 className="title">my location</h3>
+        </div>
+      </div>
+      <ul className="menuSpace">
+        <li>
+          <Dropdown
+            cityName={cityName}
+            setCityName={setCityName}
+            itemList={dropDownCityList}
+          />
+        </li>
+        <li>
+          <Dropdown
+            cityName={stationName}
+            setCityName={setStationName}
+            itemList={dropDownStationList}
+          />
+        </li>
+      </ul>
+
       {isLoading ? (
         '로딩중'
       ) : (
-        <div>
+        <div className="contents">
           {stationFineDustInfo.map((post: Post) => (
             <LocationList key={post.stationName} post={post} />
           ))}
         </div>
       )}
-    </div>
+    </S.Wrapper>
   );
 }
 

@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-interface Props {
-  isDropDwon?: boolean;
-}
-
 // eslint-disable-next-line import/prefer-default-export
 export const Wrapper = styled.div`
   width: calc(100% - 8rem);
@@ -19,17 +15,17 @@ export const Wrapper = styled.div`
     background: #fff;
     box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #ffffff;
     border-radius: 2.4rem;
-    ul.contents {
+    > ul.contents {
       position: relative;
       display: flex;
       height: 100%;
       align-items: center;
-      li:first-child svg {
+      > li:first-child svg {
         width: 19.9122vh;
         margin-left: 6.4rem;
       }
 
-      li:last-child {
+      > li:last-child {
         margin-left: 6.4rem;
         .fineDust {
           font-size: 6.4rem;
