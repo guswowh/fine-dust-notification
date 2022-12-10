@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import Dropdown from '../../components/DropDown';
 import LocationList from '../../components/LocationItem';
+import TitleSpace from '../../components/TitleSpace';
 import * as S from './style';
 
 interface Props {
@@ -84,12 +85,7 @@ function MyLocation({
 
   return (
     <S.Wrapper>
-      <div className="titleSpace">
-        <div>
-          <p className="userName">hyun jae cho</p>
-          <h3 className="title">my location</h3>
-        </div>
-      </div>
+      <TitleSpace title="my location" userName="hyun jae cho" />
       <ul className="menuSpace">
         <li>
           <Dropdown
