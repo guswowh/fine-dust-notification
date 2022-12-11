@@ -1,5 +1,14 @@
 import { useLocation } from 'react-router-dom';
-import { GootUiIcon, OffCheckIcon, OnCheckIcon } from '../icons';
+import {
+  ABitBadUiIcon,
+  BadUiIcon,
+  GootUiIcon,
+  NormalUiIcon,
+  OffCheckIcon,
+  OnCheckIcon,
+  TooBadUiIcon,
+  UnknownUiIcon,
+} from '../icons';
 import * as S from './style';
 
 interface Post {
@@ -27,7 +36,12 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
       <div className="inner">
         <ul className="contents">
           <li>
-            <GootUiIcon />
+            {post.fineDust === '1' ? <GootUiIcon /> : ''}
+            {post.fineDust === '2' ? <NormalUiIcon /> : ''}
+            {post.fineDust === '3' ? <ABitBadUiIcon /> : ''}
+            {post.fineDust === '4' ? <BadUiIcon /> : ''}
+            {post.fineDust === '5' ? <TooBadUiIcon /> : ''}
+            {post.fineDust === null ? <UnknownUiIcon /> : ''}
           </li>
           <li>
             <p className="fineDust">
@@ -38,11 +52,11 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
               {post.fineDust === '5' ? 'too bad' : ''}
               {post.fineDust === null ? 'unknown' : ''}
             </p>
-            <p className="concentration">
+            <p className="stationName">{post.stationName}</p>
+            <p className="fineDustInfo">
               미세먼지 농도: {post.fineDustConcentration}
             </p>
-            <p className="dateTime">{post.dateTime} 기준</p>
-            <p />
+            <p className="fineDustInfo">{post.dateTime} 기준</p>
 
             {location.pathname !== '/' ? (
               <button

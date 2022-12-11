@@ -317,6 +317,990 @@ export function GootUiIcon() {
   );
 }
 
+export function NormalUiIcon() {
+  return (
+    <svg
+      width="272"
+      height="272"
+      viewBox="0 0 272 272"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_94_2)">
+        <circle cx="136" cy="136" r="136" fill="#C9E0ED" />
+      </g>
+      <circle
+        cx="136"
+        cy="55"
+        r="3"
+        transform="rotate(90 136 55)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="136"
+        cy="163"
+        r="3"
+        transform="rotate(90 136 163)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="136"
+        cy="82"
+        r="3"
+        transform="rotate(90 136 82)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="109"
+        cy="82"
+        r="3"
+        transform="rotate(90 109 82)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="136"
+        cy="190"
+        r="3"
+        transform="rotate(90 136 190)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="136"
+        cy="109"
+        r="3"
+        transform="rotate(90 136 109)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="109"
+        cy="109"
+        r="3"
+        transform="rotate(90 109 109)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="136"
+        cy="217"
+        r="3"
+        transform="rotate(90 136 217)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="136"
+        cy="136"
+        r="3"
+        transform="rotate(-180 136 136)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="217"
+        cy="136"
+        r="3"
+        transform="rotate(-180 217 136)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="109"
+        cy="136"
+        r="3"
+        transform="rotate(-180 109 136)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="109"
+        cy="163"
+        r="3"
+        transform="rotate(-180 109 163)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="109"
+        cy="190"
+        r="3"
+        transform="rotate(-180 109 190)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="190"
+        cy="136"
+        r="3"
+        transform="rotate(-180 190 136)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="190"
+        cy="163"
+        r="3"
+        transform="rotate(-180 190 163)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="190"
+        cy="109"
+        r="3"
+        transform="rotate(-180 190 109)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="82"
+        cy="136"
+        r="3"
+        transform="rotate(-180 82 136)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="82"
+        cy="163"
+        r="3"
+        transform="rotate(-180 82 163)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="82"
+        cy="109"
+        r="3"
+        transform="rotate(-180 82 109)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="163"
+        cy="136"
+        r="3"
+        transform="rotate(-180 163 136)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="163"
+        cy="163"
+        r="3"
+        transform="rotate(-180 163 163)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="163"
+        cy="190"
+        r="3"
+        transform="rotate(-180 163 190)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="163"
+        cy="109"
+        r="3"
+        transform="rotate(-180 163 109)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="163"
+        cy="82"
+        r="3"
+        transform="rotate(-180 163 82)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="55"
+        cy="136"
+        r="3"
+        transform="rotate(-180 55 136)"
+        fill="#F0F0F0"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_94_2"
+          x="-12"
+          y="-12"
+          width="296"
+          height="296"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_94_2"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_94_2"
+            result="effect2_innerShadow_94_2"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+export function ABitBadUiIcon() {
+  return (
+    <svg
+      width="272"
+      height="272"
+      viewBox="0 0 272 272"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_94_3)">
+        <circle cx="136" cy="136" r="136" fill="#B4B0CC" />
+      </g>
+      <circle
+        cx="135"
+        cy="56"
+        r="4"
+        transform="rotate(90 135 56)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="135"
+        cy="164"
+        r="4"
+        transform="rotate(90 135 164)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="135"
+        cy="83"
+        r="4"
+        transform="rotate(90 135 83)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="108"
+        cy="83"
+        r="4"
+        transform="rotate(90 108 83)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="135"
+        cy="191"
+        r="4"
+        transform="rotate(90 135 191)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="135"
+        cy="110"
+        r="4"
+        transform="rotate(90 135 110)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="108"
+        cy="110"
+        r="4"
+        transform="rotate(90 108 110)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="135"
+        cy="218"
+        r="4"
+        transform="rotate(90 135 218)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="135"
+        cy="135"
+        r="4"
+        transform="rotate(-180 135 135)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="216"
+        cy="135"
+        r="4"
+        transform="rotate(-180 216 135)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="108"
+        cy="135"
+        r="4"
+        transform="rotate(-180 108 135)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="108"
+        cy="162"
+        r="4"
+        transform="rotate(-180 108 162)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="108"
+        cy="189"
+        r="4"
+        transform="rotate(-180 108 189)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="189"
+        cy="135"
+        r="4"
+        transform="rotate(-180 189 135)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="189"
+        cy="162"
+        r="4"
+        transform="rotate(-180 189 162)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="189"
+        cy="108"
+        r="4"
+        transform="rotate(-180 189 108)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="81"
+        cy="135"
+        r="4"
+        transform="rotate(-180 81 135)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="81"
+        cy="162"
+        r="4"
+        transform="rotate(-180 81 162)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="81"
+        cy="108"
+        r="4"
+        transform="rotate(-180 81 108)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="162"
+        cy="135"
+        r="4"
+        transform="rotate(-180 162 135)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="162"
+        cy="162"
+        r="4"
+        transform="rotate(-180 162 162)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="162"
+        cy="189"
+        r="4"
+        transform="rotate(-180 162 189)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="162"
+        cy="108"
+        r="4"
+        transform="rotate(-180 162 108)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="162"
+        cy="81"
+        r="4"
+        transform="rotate(-180 162 81)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="54"
+        cy="135"
+        r="4"
+        transform="rotate(-180 54 135)"
+        fill="#F0F0F0"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_94_3"
+          x="-12"
+          y="-12"
+          width="296"
+          height="296"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_94_3"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_94_3"
+            result="effect2_innerShadow_94_3"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+export function BadUiIcon() {
+  return (
+    <svg
+      width="272"
+      height="272"
+      viewBox="0 0 272 272"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_94_4)">
+        <circle cx="136" cy="136" r="136" fill="#95567C" />
+      </g>
+      <circle
+        cx="134"
+        cy="57"
+        r="5"
+        transform="rotate(90 134 57)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="134"
+        cy="165"
+        r="5"
+        transform="rotate(90 134 165)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="134"
+        cy="84"
+        r="5"
+        transform="rotate(90 134 84)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="107"
+        cy="84"
+        r="5"
+        transform="rotate(90 107 84)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="134"
+        cy="192"
+        r="5"
+        transform="rotate(90 134 192)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="134"
+        cy="111"
+        r="5"
+        transform="rotate(90 134 111)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="107"
+        cy="111"
+        r="5"
+        transform="rotate(90 107 111)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="134"
+        cy="219"
+        r="5"
+        transform="rotate(90 134 219)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="134"
+        cy="134"
+        r="5"
+        transform="rotate(-180 134 134)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="215"
+        cy="134"
+        r="5"
+        transform="rotate(-180 215 134)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="107"
+        cy="134"
+        r="5"
+        transform="rotate(-180 107 134)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="107"
+        cy="161"
+        r="5"
+        transform="rotate(-180 107 161)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="107"
+        cy="188"
+        r="5"
+        transform="rotate(-180 107 188)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="188"
+        cy="134"
+        r="5"
+        transform="rotate(-180 188 134)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="188"
+        cy="161"
+        r="5"
+        transform="rotate(-180 188 161)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="188"
+        cy="107"
+        r="5"
+        transform="rotate(-180 188 107)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="80"
+        cy="134"
+        r="5"
+        transform="rotate(-180 80 134)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="80"
+        cy="161"
+        r="5"
+        transform="rotate(-180 80 161)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="80"
+        cy="107"
+        r="5"
+        transform="rotate(-180 80 107)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="161"
+        cy="134"
+        r="5"
+        transform="rotate(-180 161 134)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="161"
+        cy="161"
+        r="5"
+        transform="rotate(-180 161 161)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="161"
+        cy="188"
+        r="5"
+        transform="rotate(-180 161 188)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="161"
+        cy="107"
+        r="5"
+        transform="rotate(-180 161 107)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="161"
+        cy="80"
+        r="5"
+        transform="rotate(-180 161 80)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="53"
+        cy="134"
+        r="5"
+        transform="rotate(-180 53 134)"
+        fill="#F0F0F0"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_94_4"
+          x="-12"
+          y="-12"
+          width="296"
+          height="296"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_94_4"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_94_4"
+            result="effect2_innerShadow_94_4"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+export function TooBadUiIcon() {
+  return (
+    <svg
+      width="272"
+      height="272"
+      viewBox="0 0 272 272"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_94_5)">
+        <circle cx="136" cy="136" r="136" fill="#942A2A" />
+      </g>
+      <circle
+        cx="133"
+        cy="58"
+        r="6"
+        transform="rotate(90 133 58)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="133"
+        cy="166"
+        r="6"
+        transform="rotate(90 133 166)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="133"
+        cy="85"
+        r="6"
+        transform="rotate(90 133 85)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="106"
+        cy="85"
+        r="6"
+        transform="rotate(90 106 85)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="133"
+        cy="193"
+        r="6"
+        transform="rotate(90 133 193)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="133"
+        cy="112"
+        r="6"
+        transform="rotate(90 133 112)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="106"
+        cy="112"
+        r="6"
+        transform="rotate(90 106 112)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="133"
+        cy="220"
+        r="6"
+        transform="rotate(90 133 220)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="133"
+        cy="133"
+        r="6"
+        transform="rotate(-180 133 133)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="214"
+        cy="133"
+        r="6"
+        transform="rotate(-180 214 133)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="106"
+        cy="133"
+        r="6"
+        transform="rotate(-180 106 133)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="106"
+        cy="160"
+        r="6"
+        transform="rotate(-180 106 160)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="106"
+        cy="187"
+        r="6"
+        transform="rotate(-180 106 187)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="187"
+        cy="133"
+        r="6"
+        transform="rotate(-180 187 133)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="187"
+        cy="160"
+        r="6"
+        transform="rotate(-180 187 160)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="187"
+        cy="106"
+        r="6"
+        transform="rotate(-180 187 106)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="79"
+        cy="133"
+        r="6"
+        transform="rotate(-180 79 133)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="79"
+        cy="160"
+        r="6"
+        transform="rotate(-180 79 160)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="79"
+        cy="106"
+        r="6"
+        transform="rotate(-180 79 106)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="160"
+        cy="133"
+        r="6"
+        transform="rotate(-180 160 133)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="160"
+        cy="160"
+        r="6"
+        transform="rotate(-180 160 160)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="160"
+        cy="187"
+        r="6"
+        transform="rotate(-180 160 187)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="160"
+        cy="106"
+        r="6"
+        transform="rotate(-180 160 106)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="160"
+        cy="79"
+        r="6"
+        transform="rotate(-180 160 79)"
+        fill="#F0F0F0"
+      />
+      <circle
+        cx="52"
+        cy="133"
+        r="6"
+        transform="rotate(-180 52 133)"
+        fill="#F0F0F0"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_94_5"
+          x="-12"
+          y="-12"
+          width="296"
+          height="296"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_94_5"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_94_5"
+            result="effect2_innerShadow_94_5"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
 export function OnCheckIcon() {
   return (
     <svg viewBox="0 0 76 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,6 +1308,77 @@ export function OnCheckIcon() {
         d="M7.50852 37.748L33.9244 62.4068C35.0208 63.4299 36.4681 64 37.9738 64C39.4795 64 40.9267 63.4299 42.0231 62.4068L68.439 37.748C72.8831 33.6114 75.3975 27.8085 75.3975 21.7425V20.8947C75.3975 10.6775 68.0151 1.96584 57.9428 0.284899C51.2767 -0.825986 44.4937 1.35193 39.728 6.11704L37.9738 7.87107L36.2195 6.11704C31.4539 1.35193 24.6708 -0.825986 18.0047 0.284899C7.93246 1.96584 0.550049 10.6775 0.550049 20.8947V21.7425C0.550049 27.8085 3.06446 33.6114 7.50852 37.748Z"
         fill="#9CB5F7"
       />
+    </svg>
+  );
+}
+
+export function UnknownUiIcon() {
+  return (
+    <svg
+      width="272"
+      height="272"
+      viewBox="0 0 272 272"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_11_707)">
+        <circle cx="136" cy="136" r="136" fill="#F0F0F0" />
+      </g>
+      <defs>
+        <filter
+          id="filter0_ii_11_707"
+          x="-12"
+          y="-12"
+          width="296"
+          height="296"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_11_707"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_11_707"
+            result="effect2_innerShadow_11_707"
+          />
+        </filter>
+      </defs>
     </svg>
   );
 }

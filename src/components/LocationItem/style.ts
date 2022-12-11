@@ -33,11 +33,11 @@ export const Wrapper = styled.div`
           text-transform: uppercase;
           color: #5477d5;
         }
-        .concentration {
+        .stationName {
           font-size: 4rem;
           line-height: 5.8rem;
         }
-        .dateTime {
+        .fineDustInfo {
           font-size: 2.4rem;
           line-height: 3.4rem;
         }
