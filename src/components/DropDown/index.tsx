@@ -1,4 +1,11 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import React, {
+  useState,
+  Dispatch,
+  SetStateAction,
+  useRef,
+  useEffect,
+} from 'react';
 import { DropDownUiOffIcon, DropDownUiOnIcon } from '../icons';
 import DropDownList from './DropDownList';
 import * as S from './style';
@@ -12,9 +19,15 @@ interface Props {
 function Dropdown({ cityName, setCityName, itemList }: Props) {
   const [dropDownVisibility, setDropDownVisibility] = useState(false);
   const [isDropDwon, setIsDropDwon] = useState(false);
+  const liElement = useRef<HTMLUListElement>(null);
+  const [dropDownListLength, setDropDownListLength] = useState<number>();
   const userChangeCityHandler = () => {
     setDropDownVisibility(!dropDownVisibility);
-    setIsDropDwon(!isDropDwon);
+    if (dropDownVisibility) {
+      setIsDropDwon(false);
+    } else {
+      setIsDropDwon(true);
+    }
   };
   const userSelectStation = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -22,7 +35,15 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
     const { textContent } = e.target as HTMLButtonElement;
     setCityName(textContent as string);
     setDropDownVisibility(!dropDownVisibility);
+    setIsDropDwon(false);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+    if (liElement.current?.offsetHeight! > liElement.current?.offsetWidth!) {
+      setDropDownListLength(liElement.current?.offsetWidth);
+    }
+  }, [dropDownVisibility, dropDownListLength]);
 
   return (
     <S.Wrapper isDropDwon={isDropDwon}>
@@ -39,15 +60,17 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
         </li>
         <li>
           <DropDownList visibility={dropDownVisibility}>
-            <ul>
-              {itemList?.map((item) => (
-                <li key={item}>
-                  <button type="button" onClick={userSelectStation}>
-                    {item}
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <S.DropdownContainer dropDownListLength={dropDownListLength}>
+              <ul ref={liElement}>
+                {itemList?.map((item) => (
+                  <li key={item}>
+                    <button type="button" onClick={userSelectStation}>
+                      {item}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </S.DropdownContainer>
           </DropDownList>
         </li>
       </ul>

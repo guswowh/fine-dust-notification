@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface Props {
   isDropDwon?: boolean;
+  dropDownListLength?: number;
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -44,15 +45,18 @@ export const DropdownContainer = styled.div`
         : '12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #FFFFFF;'};
     border-radius: 2.4rem;
     width: 100%;
+    height: ${(props: Props) => props.dropDownListLength}px;
     margin-top: 1.4rem;
     overflow: scroll;
     z-index: 11111;
     -ms-overflow-style: none;
 
     & > li {
-      padding: 1.4rem 4rem;
       button {
         font-size: 4rem;
+        padding: 1.4rem 4rem;
+        width: 100%;
+        text-align: left;
       }
     }
   }
