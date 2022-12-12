@@ -46,7 +46,10 @@ function Router() {
   const fetchData = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(url, { params: getParameters }); // API 호출
+      const response = await axios.get(
+        'https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty',
+        { params: getParameters }
+      ); // API 호출
       setPostData(response.data.response.body.items);
       setIsLoading(false);
     } catch (e) {
