@@ -319,13 +319,7 @@ export function GootUiIcon() {
 
 export function NormalUiIcon() {
   return (
-    <svg
-      width="272"
-      height="272"
-      viewBox="0 0 272 272"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_ii_94_2)">
         <circle cx="136" cy="136" r="136" fill="#C9E0ED" />
       </g>
@@ -565,13 +559,7 @@ export function NormalUiIcon() {
 
 export function ABitBadUiIcon() {
   return (
-    <svg
-      width="272"
-      height="272"
-      viewBox="0 0 272 272"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_ii_94_3)">
         <circle cx="136" cy="136" r="136" fill="#B4B0CC" />
       </g>
@@ -811,13 +799,7 @@ export function ABitBadUiIcon() {
 
 export function BadUiIcon() {
   return (
-    <svg
-      width="272"
-      height="272"
-      viewBox="0 0 272 272"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_ii_94_4)">
         <circle cx="136" cy="136" r="136" fill="#95567C" />
       </g>
@@ -1057,13 +1039,7 @@ export function BadUiIcon() {
 
 export function TooBadUiIcon() {
   return (
-    <svg
-      width="272"
-      height="272"
-      viewBox="0 0 272 272"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_ii_94_5)">
         <circle cx="136" cy="136" r="136" fill="#942A2A" />
       </g>
@@ -1314,13 +1290,7 @@ export function OnCheckIcon() {
 
 export function UnknownUiIcon() {
   return (
-    <svg
-      width="272"
-      height="272"
-      viewBox="0 0 272 272"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_ii_11_707)">
         <circle cx="136" cy="136" r="136" fill="#F0F0F0" />
       </g>
