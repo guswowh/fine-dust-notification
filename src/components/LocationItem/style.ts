@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
       overflow: hidden;
       ul.contents > li:first-child svg {
         position: absolute;
-        right: -10rem;
+        right: -20rem;
         bottom: -10rem;
       }
     }
