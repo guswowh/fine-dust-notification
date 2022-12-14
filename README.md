@@ -10,9 +10,12 @@
 미세먼지 공공데이터 API 를 활용하여, 미세먼지 정보를 보기 쉽게 보여주는 서비스입니다.
 
 ## ⚒ 기술 스택
-- 언어: TypeScript
-- 상태관리: Redux Toolkit
-- 스타일링: Styled Component
+- React
+- React-Router
+- Redux Toolkit
+- RTK Query
+- TypeScript
+- Styled Component
 
 ## 📄 기능 설명
 - 사용자가 설정한 기본 지역의 미세먼지 정보만 표시하는 기능
