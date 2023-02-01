@@ -4,9 +4,11 @@ import reset from 'styled-reset';
 export default createGlobalStyle`
 ${reset}
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   box-sizing: border-box;
-  font-family: 'Pretendard Variable' !important;
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif !important;
 }
 html {
   font-size: 62.5%; // 10px
