@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, Dispatch, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store';
-import { favorites } from '../../store/slices/locationSlice';
+import { favoritesList } from '../../store/slices/locationSlice';
 import LocationItemList from '../../components/LocationItemList';
 import TitleSpace from '../../components/TitleSpace';
 
@@ -48,7 +48,7 @@ function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
   }, [location.checkedList]);
 
   useEffect(() => {
-    dispatch(favorites(locationFineDustInfo));
+    dispatch(favoritesList(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
 
   const cityCheckHandler = (id: string) => {

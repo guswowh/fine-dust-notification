@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const asyncUpFetch = createAsyncThunk(
+export const asyncUpFetch = createAsyncThunk(
   'locationSlice/asyncUpFetch',
   async (cityName: string) => {
     const response = await axios.get(
@@ -112,5 +112,5 @@ export const locationSlice = createSlice({
   },
 });
 
-export const { favorites } = locationSlice.actions;
-export { asyncUpFetch };
+export const favoritesList = locationSlice.actions.favorites;
+// export const asyncUpFetch

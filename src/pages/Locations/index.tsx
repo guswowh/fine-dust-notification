@@ -11,7 +11,7 @@ import LocationItemList from '../../components/LocationItemList';
 import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
 import { useAppSelector } from '../../store';
-import { favorites } from '../../store/slices/locationSlice';
+import { favoritesList } from '../../store/slices/locationSlice';
 import * as S from './style';
 
 interface Props {
@@ -57,7 +57,7 @@ function Location({
   }, [cityName]);
 
   useEffect(() => {
-    dispatch(favorites(locationFineDustInfo));
+    dispatch(favoritesList(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
 
   const cityCheckHandler = (id: string) => {

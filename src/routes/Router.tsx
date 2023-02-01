@@ -4,9 +4,9 @@ import Gnb from '../components/Gnb';
 import MyLocation from '../pages/MyLocation';
 import Location from '../pages/Locations';
 import Favorites from '../pages/Favorites';
-import { asyncUpFetch } from '../store/slices/locationSlice';
 import { useAppDispatch, useAppSelector } from '../store';
 import ErrorPage from '../pages/ErrorPage';
+import { asyncUpFetch } from '../store/slices/locationSlice';
 
 function Router() {
   const dispatch = useAppDispatch();
@@ -65,6 +65,7 @@ function Router() {
     dataTime: string;
     pm25Value: string;
   }
+
   useEffect(() => {
     dispatch(asyncUpFetch(cityName));
   }, [cityName, dispatch]);
