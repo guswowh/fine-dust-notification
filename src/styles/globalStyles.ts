@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   max-width: 102.4rem;
+  max-height: 136.6rem;
   margin: 0 auto;
 }
 input, textarea { 

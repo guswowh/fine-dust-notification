@@ -25,7 +25,7 @@ interface CityCheckHandler {
 
 interface UserPost {
   post: Post;
-  cityCheckHandler?: CityCheckHandler;
+  cityCheckHandler?: CityCheckHandler | undefined;
 }
 
 function LocationItem({ post, cityCheckHandler }: UserPost) {
@@ -53,9 +53,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
               {post.fineDust === null ? 'unknown' : ''}
             </p>
             <p className="stationName">{post.stationName}</p>
-            <p className="fineDustInfo">
-              미세먼지 농도: {post.fineDustConcentration}
-            </p>
+            <p className="fineDustInfo">미세먼지 농도: {post.fineDust}</p>
             <p className="fineDustInfo">{post.dateTime} 기준</p>
 
             {location.pathname !== '/' ? (

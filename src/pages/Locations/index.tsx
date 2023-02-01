@@ -10,7 +10,7 @@ import Dropdown from '../../components/DropDown';
 import LocationItemList from '../../components/LocationItemList';
 import TitleSpace from '../../components/TitleSpace';
 import { useAppSelector } from '../../store';
-import { favorites } from '../../store/slices/LocationSlice';
+import { favorites } from '../../store/slices/locationSlice';
 import * as S from './style';
 
 interface Props {
@@ -46,7 +46,7 @@ function Location({
 }: Props) {
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
   const dispatch = useDispatch();
-  const location = useAppSelector((state) => state.LocationSlice);
+  const location = useAppSelector((state) => state.locationSlice);
 
   const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {

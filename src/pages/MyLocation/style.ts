@@ -19,4 +19,15 @@ export const Wrapper = styled.div`
   & > .contents {
     padding-top: 4rem;
   }
+  @media screen and (max-width: 390px) {
+    & .menuSpace {
+      display: block;
+      > li:first-child {
+        padding-bottom: 2.2rem;
+      }
+      > li {
+        width: 100% !important;
+      }
+    }
+  }
 `;

@@ -2,12 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 // import { createLogger } from 'redux-logger';
 // import counterReducer from './slices/counterSlice';
-import { LocationSlice } from './slices/LocationSlice';
+import { locationSlice } from './slices/locationSlice';
 
 // const logger = createLogger();
 
 const rootReducer = combineReducers({
-  LocationSlice: LocationSlice.reducer,
+  locationSlice: locationSlice.reducer,
 });
 
 const store = configureStore({

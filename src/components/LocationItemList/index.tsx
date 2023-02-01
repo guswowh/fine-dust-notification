@@ -12,7 +12,6 @@ interface UserPost {
 }
 
 interface MapList {
-  map(arg0: (post: MapList) => JSX.Element): React.ReactNode;
   stationName: string;
   fineDust: string;
   isCheck: boolean;
