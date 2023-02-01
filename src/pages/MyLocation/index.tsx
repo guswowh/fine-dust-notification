@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import Dropdown from '../../components/DropDown';
 import LocationItem from '../../components/LocationItem';
+import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
 import * as S from './style';
 
@@ -102,9 +103,10 @@ function MyLocation({
           />
         </li>
       </ul>
-
       {isLoading ? (
-        '로딩중'
+        <S.SpinnerContainer>
+          <Spinner />
+        </S.SpinnerContainer>
       ) : (
         <div className="contents">
           {stationFineDustInfo.map((post: Post) => (

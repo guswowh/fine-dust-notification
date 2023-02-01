@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Gnb from '../components/Gnb';
 import MyLocation from '../pages/MyLocation';
@@ -55,8 +55,6 @@ function Router() {
   useEffect(() => {
     if (isErrorPayload) {
       navigate('errorPage');
-    } else {
-      navigate('/');
     }
   }, [isErrorPayload, navigate]);
 

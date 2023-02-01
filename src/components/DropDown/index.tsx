@@ -54,7 +54,7 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
             type="button"
             onClick={userChangeCityHandler}
           >
-            {cityName}
+            <span>{cityName}</span>
             {isDropDwon ? <DropDownUiOnIcon /> : <DropDownUiOffIcon />}
           </button>
         </li>

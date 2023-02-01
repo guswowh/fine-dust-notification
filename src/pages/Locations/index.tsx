@@ -8,6 +8,7 @@ import React, {
 import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown';
 import LocationItemList from '../../components/LocationItemList';
+import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
 import { useAppSelector } from '../../store';
 import { favorites } from '../../store/slices/locationSlice';
@@ -79,9 +80,10 @@ function Location({
           />
         </li>
       </ul>
-
       {isLoading ? (
-        '로딩중'
+        <S.SpinnerContainer>
+          <Spinner />
+        </S.SpinnerContainer>
       ) : (
         <LocationItemList
           mapList={location.checkedList}

@@ -31,3 +31,9 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export const SpinnerContainer = styled.div`
+  height: 40vh;
+  display: flex;
+  align-items: center;
+`;
