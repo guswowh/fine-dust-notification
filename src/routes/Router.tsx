@@ -6,6 +6,7 @@ import Location from '../pages/Locations';
 import Favorites from '../pages/Favorites';
 import { asyncUpFetch } from '../store/slices/locationSlice';
 import { useAppDispatch, useAppSelector } from '../store';
+import ErrorPage from '../pages/ErrorPage';
 
 interface PostDataList {
   stationName: string;
@@ -22,7 +23,7 @@ function Router() {
   const isLoadingPayload = useAppSelector(
     (state) => state.locationSlice.isLoading
   );
-  // const isErrorPayload = useAppSelector((state) => state.locationSlice.isError);
+  const isErrorPayload = useAppSelector((state) => state.locationSlice.isError);
   const [postData, setPostData] = useState([]);
   const [cityName, setCityName] = useState('서울');
   const [locationFineDustInfo, setLocationFineDustInfo] = useState([
@@ -51,10 +52,13 @@ function Router() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postDataPayload?.length]);
 
-  // useEffect(() => {
-  //   console.log(isErrorPayload);
-  //   navigate('favorites');
-  // }, [isErrorPayload, navigate]);
+  useEffect(() => {
+    if (isErrorPayload) {
+      navigate('errorPage');
+    } else {
+      navigate('/');
+    }
+  }, [isErrorPayload, navigate]);
 
   useEffect(() => {
     const postDataList = postData.map((item: PostDataList) => {
@@ -108,6 +112,7 @@ function Router() {
             />
           }
         />
+        <Route path="errorPage" element={<ErrorPage />} />
       </Routes>
       <Gnb />
     </>

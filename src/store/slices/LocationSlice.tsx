@@ -6,7 +6,7 @@ const asyncUpFetch = createAsyncThunk(
   'locationSlice/asyncUpFetch',
   async (cityName: string) => {
     const response = await axios.get(
-      'ttps://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty',
+      'https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty',
       {
         params: {
           serviceKey:
@@ -51,6 +51,7 @@ export const locationSlice = createSlice({
     });
     builder.addCase(asyncUpFetch.fulfilled, (state, action) => {
       state.postData = action;
+      state.isError = false;
       state.isLoading = false;
     });
     builder.addCase(asyncUpFetch.rejected, (state, action) => {
