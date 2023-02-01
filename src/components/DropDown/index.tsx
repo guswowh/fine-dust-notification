@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, {
   useState,
   Dispatch,
@@ -40,8 +38,10 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
   };
 
   useEffect(() => {
-    if (liElement.current?.offsetHeight! > liElement.current?.offsetWidth!) {
-      setDropDownListLength(liElement.current?.offsetWidth);
+    if (liElement.current?.offsetHeight) {
+      if (liElement.current?.offsetHeight > liElement.current?.offsetWidth) {
+        setDropDownListLength(liElement.current?.offsetWidth);
+      }
     }
   }, [dropDownVisibility, dropDownListLength]);
 
