@@ -26,14 +26,66 @@ const asyncUpFetch = createAsyncThunk(
 const initialState: LocationState = {
   isLoading: true,
   isError: false,
-  postData: {},
+  postData: [
+    {
+      coFlag: '',
+      coGrade: '',
+      coValue: '',
+      dataTime: '',
+      khaiGrade: '',
+      khaiValue: '',
+      no2Flag: '',
+      no2Grade: '',
+      no2Value: '',
+      o3Flag: '',
+      o3Grade: '',
+      o3Value: '',
+      pm10Flag: '',
+      pm10Grade: '',
+      pm10Value: '',
+      pm25Flag: '',
+      pm25Grade: '',
+      pm25Value: '',
+      sidoName: '',
+      so2Flag: '',
+      so2Grade: '',
+      so2Value: '',
+      stationName: '',
+    },
+  ],
   checkedList: [],
 };
+
+interface PostData {
+  coFlag: string;
+  coGrade: string;
+  coValue: string;
+  dataTime: string;
+  khaiGrade: string;
+  khaiValue: string;
+  no2Flag: string;
+  no2Grade: string;
+  no2Value: string;
+  o3Flag: string;
+  o3Grade: string;
+  o3Value: string;
+  pm10Flag: string;
+  pm10Grade: string;
+  pm10Value: string;
+  pm25Flag: string;
+  pm25Grade: string;
+  pm25Value: string;
+  sidoName: string;
+  so2Flag: string;
+  so2Grade: string;
+  so2Value: string;
+  stationName: string;
+}
 
 interface LocationState {
   isLoading: boolean;
   isError: boolean;
-  postData: any;
+  postData: PostData[];
   checkedList: [];
 }
 
@@ -50,12 +102,11 @@ export const locationSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(asyncUpFetch.fulfilled, (state, action) => {
-      state.postData = action;
+      state.postData = action.payload;
       state.isError = false;
       state.isLoading = false;
     });
-    builder.addCase(asyncUpFetch.rejected, (state, action) => {
-      state.postData = action;
+    builder.addCase(asyncUpFetch.rejected, (state) => {
       state.isError = true;
     });
   },

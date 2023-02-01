@@ -8,23 +8,16 @@ import { asyncUpFetch } from '../store/slices/locationSlice';
 import { useAppDispatch, useAppSelector } from '../store';
 import ErrorPage from '../pages/ErrorPage';
 
-interface PostDataList {
-  stationName: string;
-  pm10Grade: string;
-  dataTime: string;
-  pm25Value: string;
-}
-
 function Router() {
   const dispatch = useAppDispatch();
   const postDataPayload = useAppSelector(
-    (state) => state.locationSlice.postData.payload
+    (state) => state.locationSlice.postData
   );
   const isLoadingPayload = useAppSelector(
     (state) => state.locationSlice.isLoading
   );
   const isErrorPayload = useAppSelector((state) => state.locationSlice.isError);
-  const [postData, setPostData] = useState([]);
+  const [postData, setPostData] = useState<PostData[]>([]);
   const [cityName, setCityName] = useState('서울');
   const [locationFineDustInfo, setLocationFineDustInfo] = useState([
     {
@@ -40,12 +33,44 @@ function Router() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  interface PostData {
+    coFlag: string;
+    coGrade: string;
+    coValue: string;
+    dataTime: string;
+    khaiGrade: string;
+    khaiValue: string;
+    no2Flag: string;
+    no2Grade: string;
+    no2Value: string;
+    o3Flag: string;
+    o3Grade: string;
+    o3Value: string;
+    pm10Flag: string;
+    pm10Grade: string;
+    pm10Value: string;
+    pm25Flag: string;
+    pm25Grade: string;
+    pm25Value: string;
+    sidoName: string;
+    so2Flag: string;
+    so2Grade: string;
+    so2Value: string;
+    stationName: string;
+  }
+
+  interface PostDataList {
+    stationName: string;
+    pm10Grade: string;
+    dataTime: string;
+    pm25Value: string;
+  }
   useEffect(() => {
     dispatch(asyncUpFetch(cityName));
   }, [cityName, dispatch]);
 
   useEffect(() => {
-    if (postDataPayload) {
+    if (Object.keys(postDataPayload).length) {
       setPostData(postDataPayload);
     }
     setIsLoading(isLoadingPayload);
