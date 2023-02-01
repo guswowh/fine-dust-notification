@@ -30,7 +30,7 @@ body {
     max-width: 102.4rem;
     max-height: 136.6rem;
     margin: 0 auto;
-    background: linear-gradient(180deg, rgba(246, 246, 246, 0) 0%, #EAF0FF 100%);
+    background: linear-gradient(180deg,rgb(255 255 255 / 120%) 0%,#EAF0FF 200%)
 }
 input, textarea { 
   -moz-user-select: auto;
