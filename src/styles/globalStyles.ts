@@ -19,6 +19,18 @@ body {
   max-width: 102.4rem;
   max-height: 136.6rem;
   margin: 0 auto;
+  height: 100vh;
+  box-sizing: border-box;
+    font-family: 'Roboto','Noto Sans KR',sans-serif !important;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    line-height: 1;
+    max-width: 102.4rem;
+    max-height: 136.6rem;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(246, 246, 246, 0) 0%, #EAF0FF 100%);
 }
 input, textarea { 
   -moz-user-select: auto;

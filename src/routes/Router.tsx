@@ -75,8 +75,7 @@ function Router() {
       setPostData(postDataPayload);
     }
     setIsLoading(isLoadingPayload);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postDataPayload?.length]);
+  }, [isLoadingPayload, postDataPayload, postDataPayload.length]);
 
   useEffect(() => {
     if (isErrorPayload) {

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   width: calc(100% - 8rem);
   height: 32.2108vh;
   padding: 1.4rem;
@@ -70,3 +69,5 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export default Wrapper;

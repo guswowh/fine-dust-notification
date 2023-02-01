@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Loader = styled.div`
-  color: #5477d5;
+const Loader = styled.div`
+  color: #9bb4f6;
   font-size: 10px;
   margin: 100px auto;
   width: 1em;
@@ -88,3 +87,5 @@ export const Loader = styled.div`
     }
   }
 `;
+
+export default Loader;

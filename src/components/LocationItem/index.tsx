@@ -9,7 +9,7 @@ import {
   TooBadUiIcon,
   UnknownUiIcon,
 } from '../icons';
-import * as S from './style';
+import Wrapper from './style';
 
 interface Post {
   stationName: string;
@@ -32,7 +32,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
   const location = useLocation();
 
   return (
-    <S.Wrapper key={post.stationName}>
+    <Wrapper key={post.stationName}>
       <div className="inner">
         <ul className="contents">
           <li>
@@ -73,7 +73,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
           </li>
         </ul>
       </div>
-    </S.Wrapper>
+    </Wrapper>
   );
 }
 

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   height: 100vh;
   width: 100%;
   font-size: 25px;
@@ -9,3 +8,5 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export default Wrapper;

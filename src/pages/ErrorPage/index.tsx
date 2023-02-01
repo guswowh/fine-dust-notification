@@ -1,8 +1,8 @@
 import React from 'react';
-import * as S from './style';
+import Wrapper from './style';
 
 function ErrorPage() {
-  return <S.Wrapper>에러가 발생하였습니다.</S.Wrapper>;
+  return <Wrapper>에러가 발생하였습니다.</Wrapper>;
 }
 
 export default ErrorPage;

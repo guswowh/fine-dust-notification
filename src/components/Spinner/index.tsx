@@ -1,8 +1,8 @@
 import React from 'react';
-import * as S from './style';
+import Loader from './style';
 
 function Spinner() {
-  return <S.Loader>Loading...</S.Loader>;
+  return <Loader>Loading...</Loader>;
 }
 
 export default Spinner;

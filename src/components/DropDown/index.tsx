@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, {
   useState,
@@ -39,7 +40,6 @@ function Dropdown({ cityName, setCityName, itemList }: Props) {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     if (liElement.current?.offsetHeight! > liElement.current?.offsetWidth!) {
       setDropDownListLength(liElement.current?.offsetWidth);
     }

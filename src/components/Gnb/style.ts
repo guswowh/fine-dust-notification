@@ -4,8 +4,7 @@ interface Props {
   location: string;
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   & .contents {
     position: fixed;
     bottom: 0;
@@ -112,3 +111,5 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export default Wrapper;

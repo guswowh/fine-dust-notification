@@ -5,7 +5,6 @@ interface Props {
   dropDownListLength?: number;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const Wrapper = styled.div`
   & ul {
     > li:first-child .cityName {

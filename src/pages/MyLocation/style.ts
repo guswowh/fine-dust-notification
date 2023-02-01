@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Wrapper = styled.div`
   & .menuSpace {
     width: calc(100% - 8rem);
