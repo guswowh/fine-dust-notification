@@ -11,10 +11,13 @@ export const Wrapper = styled.div`
     .userName {
       font-size: 4rem;
       line-height: 4.8rem;
+      color: #3c3c3c;
     }
     .title {
       font-size: 6.4rem;
       line-height: 7.4rem;
+      font-weight: 500;
+      color: #3c3c3c;
     }
   }
   @media screen and (max-width: 390px) {
