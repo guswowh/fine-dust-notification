@@ -1,21 +1,23 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Gnb from '../components/Gnb';
 import MyLocation from '../pages/MyLocation';
 import Location from '../pages/Locations';
 import Favorites from '../pages/Favorites';
-
-interface PostDataList {
-  stationName: string;
-  pm10Grade: string;
-  dataTime: string;
-  pm25Value: string;
-}
+import { useAppDispatch, useAppSelector } from '../store';
+import ErrorPage from '../pages/ErrorPage';
+import { asyncUpFetch } from '../store/slices/locationSlice';
 
 function Router() {
-  const url = import.meta.env.VITE_SERVICE_URL;
-  const [postData, setPostData] = useState([]);
+  const dispatch = useAppDispatch();
+  const postDataPayload = useAppSelector(
+    (state) => state.locationSlice.postData
+  );
+  const isLoadingPayload = useAppSelector(
+    (state) => state.locationSlice.isLoading
+  );
+  const isErrorPayload = useAppSelector((state) => state.locationSlice.isError);
+  const [postData, setPostData] = useState<PostData[]>([]);
   const [cityName, setCityName] = useState('서울');
   const [locationFineDustInfo, setLocationFineDustInfo] = useState([
     {
@@ -31,36 +33,55 @@ function Router() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const getParameters = useMemo(() => {
-    return {
-      serviceKey:
-        'B32FyO4r1il7R2cjyPyL1YCjNknWvY+7eQ66ZFvPPog06QXvBZ4F65RJxbHjwJ01o7iXCsS71hX367sokvnHcw==',
-      returnType: 'json',
-      numOfRows: '100',
-      pageNo: '1',
-      sidoName: cityName,
-      ver: '1.0',
-    };
-  }, [cityName]);
+  interface PostData {
+    coFlag: string;
+    coGrade: string;
+    coValue: string;
+    dataTime: string;
+    khaiGrade: string;
+    khaiValue: string;
+    no2Flag: string;
+    no2Grade: string;
+    no2Value: string;
+    o3Flag: string;
+    o3Grade: string;
+    o3Value: string;
+    pm10Flag: string;
+    pm10Grade: string;
+    pm10Value: string;
+    pm25Flag: string;
+    pm25Grade: string;
+    pm25Value: string;
+    sidoName: string;
+    so2Flag: string;
+    so2Grade: string;
+    so2Value: string;
+    stationName: string;
+  }
 
-  const fetchData = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        'https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty',
-        { params: getParameters }
-      ); // API 호출
-      setPostData(response.data.response.body.items);
-      setIsLoading(false);
-    } catch (e) {
-      navigate('/');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getParameters, url]);
+  interface PostDataList {
+    stationName: string;
+    pm10Grade: string;
+    dataTime: string;
+    pm25Value: string;
+  }
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    dispatch(asyncUpFetch(cityName));
+  }, [cityName, dispatch]);
+
+  useEffect(() => {
+    if (Object.keys(postDataPayload).length) {
+      setPostData(postDataPayload);
+    }
+    setIsLoading(isLoadingPayload);
+  }, [isLoadingPayload, postDataPayload, postDataPayload.length]);
+
+  useEffect(() => {
+    if (isErrorPayload) {
+      navigate('errorPage');
+    }
+  }, [isErrorPayload, navigate]);
 
   useEffect(() => {
     const postDataList = postData.map((item: PostDataList) => {
@@ -114,6 +135,7 @@ function Router() {
             />
           }
         />
+        <Route path="errorPage" element={<ErrorPage />} />
       </Routes>
       <Gnb />
     </>

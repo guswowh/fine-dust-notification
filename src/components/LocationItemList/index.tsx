@@ -1,6 +1,6 @@
 import React from 'react';
 import LocationItem from '../LocationItem';
-import * as S from './style';
+import Wrapper from './style';
 
 interface CityCheckHandler {
   (id: string): void;
@@ -12,7 +12,6 @@ interface UserPost {
 }
 
 interface MapList {
-  map(arg0: (post: MapList) => JSX.Element): React.ReactNode;
   stationName: string;
   fineDust: string;
   isCheck: boolean;
@@ -22,7 +21,7 @@ interface MapList {
 
 function LocationItemList({ mapList, cityCheckHandler }: UserPost) {
   return (
-    <S.Wrapper>
+    <Wrapper>
       <ul className="contents">
         {mapList.map((post: MapList) => (
           <li key={post.stationName}>
@@ -30,7 +29,7 @@ function LocationItemList({ mapList, cityCheckHandler }: UserPost) {
           </li>
         ))}
       </ul>
-    </S.Wrapper>
+    </Wrapper>
   );
 }
 

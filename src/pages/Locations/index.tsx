@@ -8,9 +8,10 @@ import React, {
 import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown';
 import LocationItemList from '../../components/LocationItemList';
+import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
 import { useAppSelector } from '../../store';
-import { favorites } from '../../store/slices/LocationSlice';
+import { favoritesList } from '../../store/slices/locationSlice';
 import * as S from './style';
 
 interface Props {
@@ -46,7 +47,9 @@ function Location({
 }: Props) {
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
   const dispatch = useDispatch();
-  const location = useAppSelector((state) => state.LocationSlice);
+  const checkedList = useAppSelector(
+    (state) => state.locationSlice.checkedList
+  );
 
   const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {
@@ -56,7 +59,7 @@ function Location({
   }, [cityName]);
 
   useEffect(() => {
-    dispatch(favorites(locationFineDustInfo));
+    dispatch(favoritesList(locationFineDustInfo));
   }, [locationFineDustInfo, dispatch]);
 
   const cityCheckHandler = (id: string) => {
@@ -65,6 +68,8 @@ function Location({
         item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
       )
     );
+    // const test = checkedList.filter((item) => item.isCheck);
+    // console.log(test);
   };
 
   return (
@@ -79,12 +84,13 @@ function Location({
           />
         </li>
       </ul>
-
       {isLoading ? (
-        '로딩중'
+        <S.SpinnerContainer>
+          <Spinner />
+        </S.SpinnerContainer>
       ) : (
         <LocationItemList
-          mapList={location.checkedList}
+          mapList={checkedList}
           cityCheckHandler={cityCheckHandler}
         />
       )}

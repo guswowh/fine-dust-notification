@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   width: calc(100% - 8rem);
   height: 32.2108vh;
   padding: 1.4rem;
@@ -28,10 +27,11 @@ export const Wrapper = styled.div`
       > li:last-child {
         margin-left: 6.4rem;
         .fineDust {
-          font-size: 6.4rem;
-          line-height: 7.5rem;
+          font-size: 5.6rem;
+          line-height: 8rem;
           text-transform: uppercase;
-          color: #5477d5;
+          color: #89a3e9;
+          font-weight: 500;
         }
         .stationName {
           font-size: 4rem;
@@ -70,3 +70,5 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export default Wrapper;

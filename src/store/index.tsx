@@ -1,18 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-// import { createLogger } from 'redux-logger';
-// import counterReducer from './slices/counterSlice';
-import { LocationSlice } from './slices/LocationSlice';
-
-// const logger = createLogger();
+import { locationSlice } from './slices/locationSlice';
 
 const rootReducer = combineReducers({
-  LocationSlice: LocationSlice.reducer,
+  locationSlice: locationSlice.reducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export default store;

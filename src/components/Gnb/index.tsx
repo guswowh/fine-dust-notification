@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FavoritesIcon, LocationsIcon, MyLocationIcon } from '../icons';
-import * as S from './style';
+import Wrapper from './style';
 
 function Gnb() {
   const location = useLocation();
 
   return (
-    <S.Wrapper location={location.pathname}>
+    <Wrapper location={location.pathname}>
       <div className="contents">
         <ul>
           <Link to="/">
@@ -29,7 +29,7 @@ function Gnb() {
       </div>
 
       <div className="bgGradation" />
-    </S.Wrapper>
+    </Wrapper>
   );
 }
 

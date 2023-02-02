@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   & > .contents {
     padding-top: 4rem;
     > li {
@@ -12,3 +11,5 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export default Wrapper;

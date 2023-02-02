@@ -9,7 +9,7 @@ import {
   TooBadUiIcon,
   UnknownUiIcon,
 } from '../icons';
-import * as S from './style';
+import Wrapper from './style';
 
 interface Post {
   stationName: string;
@@ -25,14 +25,14 @@ interface CityCheckHandler {
 
 interface UserPost {
   post: Post;
-  cityCheckHandler?: CityCheckHandler;
+  cityCheckHandler?: CityCheckHandler | undefined;
 }
 
 function LocationItem({ post, cityCheckHandler }: UserPost) {
   const location = useLocation();
 
   return (
-    <S.Wrapper key={post.stationName}>
+    <Wrapper key={post.stationName}>
       <div className="inner">
         <ul className="contents">
           <li>
@@ -53,9 +53,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
               {post.fineDust === null ? 'unknown' : ''}
             </p>
             <p className="stationName">{post.stationName}</p>
-            <p className="fineDustInfo">
-              미세먼지 농도: {post.fineDustConcentration}
-            </p>
+            <p className="fineDustInfo">미세먼지 농도: {post.fineDust}</p>
             <p className="fineDustInfo">{post.dateTime} 기준</p>
 
             {location.pathname !== '/' ? (
@@ -75,7 +73,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
           </li>
         </ul>
       </div>
-    </S.Wrapper>
+    </Wrapper>
   );
 }
 
