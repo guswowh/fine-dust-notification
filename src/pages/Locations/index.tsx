@@ -47,7 +47,9 @@ function Location({
 }: Props) {
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
   const dispatch = useDispatch();
-  const location = useAppSelector((state) => state.locationSlice);
+  const checkedList = useAppSelector(
+    (state) => state.locationSlice.checkedList
+  );
 
   const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {
@@ -66,6 +68,8 @@ function Location({
         item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
       )
     );
+    // const test = checkedList.filter((item) => item.isCheck);
+    // console.log(test);
   };
 
   return (
@@ -86,7 +90,7 @@ function Location({
         </S.SpinnerContainer>
       ) : (
         <LocationItemList
-          mapList={location.checkedList}
+          mapList={checkedList}
           cityCheckHandler={cityCheckHandler}
         />
       )}
