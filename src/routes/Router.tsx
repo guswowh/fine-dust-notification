@@ -6,9 +6,29 @@ import Location from '../pages/Locations';
 import Favorites from '../pages/Favorites';
 import { useAppDispatch, useAppSelector } from '../store';
 import ErrorPage from '../pages/ErrorPage';
-import { asyncUpFetch } from '../store/slices/locationSlice';
+import { asyncUpFetch, getFavoriteList } from '../store/slices/locationSlice';
+import SingUp from '../pages/SignUp';
+import SingIn from '../pages/SingIn';
 
 function Router() {
+  interface PostDataList {
+    cityName: string;
+    dateTime: string;
+    fineDust: string;
+    fineDustConcentration: string;
+    isCheck: boolean;
+    stationName: string;
+  }
+
+  interface UsersData {
+    cityName: string;
+    stationName: string;
+    fineDust: string;
+    dateTime: string;
+    fineDustConcentration: string;
+    isCheck: boolean;
+  }
+
   const dispatch = useAppDispatch();
   const postDataPayload = useAppSelector(
     (state) => state.locationSlice.postData
@@ -17,7 +37,6 @@ function Router() {
     (state) => state.locationSlice.isLoading
   );
   const isErrorPayload = useAppSelector((state) => state.locationSlice.isError);
-  const [postData, setPostData] = useState<PostData[]>([]);
   const [cityName, setCityName] = useState('서울');
   const [locationFineDustInfo, setLocationFineDustInfo] = useState([
     {
@@ -33,60 +52,33 @@ function Router() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  interface PostData {
-    coFlag: string;
-    coGrade: string;
-    coValue: string;
-    dataTime: string;
-    khaiGrade: string;
-    khaiValue: string;
-    no2Flag: string;
-    no2Grade: string;
-    no2Value: string;
-    o3Flag: string;
-    o3Grade: string;
-    o3Value: string;
-    pm10Flag: string;
-    pm10Grade: string;
-    pm10Value: string;
-    pm25Flag: string;
-    pm25Grade: string;
-    pm25Value: string;
-    sidoName: string;
-    so2Flag: string;
-    so2Grade: string;
-    so2Value: string;
-    stationName: string;
-  }
-
-  interface PostDataList {
-    stationName: string;
-    pm10Grade: string;
-    dataTime: string;
-    pm25Value: string;
-  }
-
   useEffect(() => {
     dispatch(asyncUpFetch(cityName));
+    dispatch(getFavoriteList());
   }, [cityName, dispatch]);
 
   useEffect(() => {
-    if (Object.keys(postDataPayload).length) {
-      setPostData(postDataPayload);
-    }
     setIsLoading(isLoadingPayload);
-  }, [isLoadingPayload, postDataPayload, postDataPayload.length]);
+  }, [isLoadingPayload]);
 
   useEffect(() => {
     if (isErrorPayload) {
-      navigate('errorPage');
+      // navigate(0);
     }
   }, [isErrorPayload, navigate]);
 
+  const checkedListDB = useAppSelector(
+    (state) => state.locationSlice.checkedListDB
+  );
+
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail[0]);
+
+  const [postDataList, setPostDataList] = useState<PostDataList[]>();
+
   useEffect(() => {
-    const postDataList = postData.map((item: PostDataList) => {
+    const usersData: UsersData[] = postDataPayload.map((item) => {
       return {
-        cityName,
+        cityName: item.sidoName,
         stationName: item.stationName,
         fineDust: item.pm10Grade,
         dateTime: item.dataTime,
@@ -94,9 +86,32 @@ function Router() {
         isCheck: false,
       };
     });
-    setStationName(postDataList[0]?.stationName);
-    setLocationFineDustInfo(postDataList);
-  }, [postData, cityName]);
+
+    setPostDataList(usersData);
+  }, [cityName, postDataPayload]);
+
+  useEffect(() => {
+    const isCheckedListDB = checkedListDB.every((item) => {
+      if (item[userEmail]) {
+        return item[userEmail][cityName];
+      }
+      return false;
+    });
+
+    if (!isCheckedListDB) {
+      if (postDataList) {
+        setStationName(postDataList[0]?.stationName);
+        setLocationFineDustInfo(postDataList);
+      }
+    } else if (checkedListDB.length) {
+      const checkedList = { ...checkedListDB };
+      if (postDataList) {
+        setStationName(postDataList[0]?.stationName);
+      }
+      setLocationFineDustInfo(checkedList[0][userEmail][cityName]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postDataList, userEmail, cityName]);
 
   return (
     <>
@@ -135,6 +150,8 @@ function Router() {
             />
           }
         />
+        <Route path="signUp" element={<SingUp />} />
+        <Route path="signIn" element={<SingIn />} />
         <Route path="errorPage" element={<ErrorPage />} />
       </Routes>
       <Gnb />

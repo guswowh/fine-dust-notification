@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, Dispatch, SetStateAction } from 'react';
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../../store';
-import { favoritesList } from '../../store/slices/locationSlice';
+import { useAppDispatch, useAppSelector } from '../../store';
+import {
+  favoritesList,
+  getFavoriteList,
+} from '../../store/slices/locationSlice';
 import LocationItemList from '../../components/LocationItemList';
 import TitleSpace from '../../components/TitleSpace';
 
@@ -38,7 +40,7 @@ interface FilterItem {
 
 function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
   const location = useAppSelector((state) => state.locationSlice);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const filterList = useMemo(() => {
     const filterItem = location.checkedList.filter((item: FilterItem) => {
@@ -46,6 +48,10 @@ function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
     });
     return filterItem;
   }, [location.checkedList]);
+
+  useEffect(() => {
+    dispatch(getFavoriteList());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(favoritesList(locationFineDustInfo));

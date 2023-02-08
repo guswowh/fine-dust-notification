@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import { getDocs, collection, doc, updateDoc } from 'firebase/firestore';
 import axios from 'axios';
+import { string } from 'prop-types';
+import { auth, db } from '../../config/firebace';
 
 export const asyncUpFetch = createAsyncThunk(
   'locationSlice/asyncUpFetch',
@@ -23,11 +26,35 @@ export const asyncUpFetch = createAsyncThunk(
   }
 );
 
+export const getFavoriteList = createAsyncThunk(
+  'locationSlice/getFavoriteList',
+  async () => {
+    const data = await getDocs(collection(db, 'favorites'));
+    const filteredData = data.docs.map((item) => ({
+      ...item.data(),
+      id: item.id,
+    }));
+    return filteredData;
+  }
+);
+
+export const updateFavoriteList = createAsyncThunk(
+  'locationSlice/updateFavoriteList',
+  async (cityName: string) => {
+    const favoriteDoc = doc(db, 'favorites', '0hAEaTo8wv2lpDVAJ86T');
+    return { favoriteDoc, cityName };
+    // return updateDoc(favoriteDoc);
+  }
+);
+
 const initialState: LocationState = {
   isLoading: true,
   isError: false,
   postData: [],
   checkedList: [],
+  checkedListDB: [],
+  userEmail: 'fine dust',
+  selectCityName: '',
 };
 
 interface PostData {
@@ -61,6 +88,9 @@ interface LocationState {
   isError: boolean;
   postData: PostData[];
   checkedList: [];
+  checkedListDB: [];
+  userEmail: string;
+  selectCityName: string;
 }
 
 export const locationSlice = createSlice({
@@ -72,7 +102,8 @@ export const locationSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(asyncUpFetch.pending, (state) => {
+    // asyncUpFetch
+    builder.addCase(asyncUpFetch.pending, (state, action) => {
       state.isLoading = true;
     });
     builder.addCase(asyncUpFetch.fulfilled, (state, action) => {
@@ -82,6 +113,72 @@ export const locationSlice = createSlice({
     });
     builder.addCase(asyncUpFetch.rejected, (state) => {
       state.isError = true;
+    });
+
+    // getFavoriteList
+    builder.addCase(getFavoriteList.fulfilled, (state, action: any) => {
+      state.checkedListDB = action.payload;
+      const emailSplit: any = auth.currentUser?.email?.split('.');
+      // const email = emailSplit[0];
+      if (emailSplit) {
+        state.userEmail = emailSplit;
+      } else {
+        state.userEmail = 'fine dust';
+      }
+    });
+    builder.addCase(getFavoriteList.rejected, (state, action) => {
+      state.isError = false;
+    });
+
+    // updateFavoriteList
+    builder.addCase(updateFavoriteList.fulfilled, (state: any, action) => {
+      state.selectCityName = action.payload.cityName;
+      const emailSplit: any = auth.currentUser?.email?.split('.');
+      let userFavoriteData;
+
+      if (!emailSplit) {
+        userFavoriteData = {};
+      } else {
+        userFavoriteData = {
+          [emailSplit[0]]: {
+            [state.checkedList[0].cityName]: current(state.checkedList),
+          },
+        };
+      }
+
+      let userFavoriteDataDB = {};
+
+      if (state.userEmail !== 'finedust') {
+        if (!state.checkedListDB.length) {
+          userFavoriteDataDB = [];
+        } else {
+          userFavoriteDataDB = state.checkedListDB[0][emailSplit[0]];
+        }
+      }
+
+      let updateUserFavoriteList: any;
+
+      if (emailSplit) {
+        updateUserFavoriteList = {
+          [emailSplit[0]]: {
+            ...userFavoriteDataDB,
+            ...userFavoriteData[emailSplit[0]],
+          },
+        };
+      }
+
+      const selectDataName = state.selectCityName;
+      let newDataName;
+
+      if (updateUserFavoriteList) {
+        newDataName =
+          updateUserFavoriteList[emailSplit[0]][state.selectCityName][0]
+            .cityName;
+      }
+
+      if (selectDataName === newDataName) {
+        updateDoc(action.payload.favoriteDoc, updateUserFavoriteList);
+      }
     });
   },
 });

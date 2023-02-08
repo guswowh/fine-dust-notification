@@ -74,6 +74,7 @@ function MyLocation({
     const filterData = filter.map((item: DropDown) => {
       return item.stationName;
     });
+
     return filterData;
   }, [locationFineDustInfo, stationName]);
 

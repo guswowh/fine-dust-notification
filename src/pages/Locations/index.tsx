@@ -5,13 +5,16 @@ import React, {
   SetStateAction,
   useMemo,
 } from 'react';
-import { useDispatch } from 'react-redux';
 import Dropdown from '../../components/DropDown';
 import LocationItemList from '../../components/LocationItemList';
 import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
-import { useAppSelector } from '../../store';
-import { favoritesList } from '../../store/slices/locationSlice';
+import { useAppDispatch, useAppSelector } from '../../store';
+import {
+  favoritesList,
+  getFavoriteList,
+  updateFavoriteList,
+} from '../../store/slices/locationSlice';
 import * as S from './style';
 
 interface Props {
@@ -46,7 +49,7 @@ function Location({
   isLoading,
 }: Props) {
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const checkedList = useAppSelector(
     (state) => state.locationSlice.checkedList
   );
@@ -59,8 +62,9 @@ function Location({
   }, [cityName]);
 
   useEffect(() => {
+    dispatch(getFavoriteList());
     dispatch(favoritesList(locationFineDustInfo));
-  }, [locationFineDustInfo, dispatch]);
+  }, [locationFineDustInfo, dispatch, cityName]);
 
   const cityCheckHandler = (id: string) => {
     setLocationFineDustInfo(
@@ -68,8 +72,7 @@ function Location({
         item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
       )
     );
-    // const test = checkedList.filter((item) => item.isCheck);
-    // console.log(test);
+    dispatch(updateFavoriteList(cityName));
   };
 
   return (
