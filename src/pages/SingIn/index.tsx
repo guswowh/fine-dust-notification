@@ -1,16 +1,22 @@
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { confirmPasswordReset, signInWithPopup, signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider, signInWithUser } from '../../config/firebace';
 
 function SingIn() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
+
+  console.log(auth.currentUser);
+  // console.log(cookies['access-token']);
 
   const userSingUpHandeler = () => {
     const { email } = userInfo;
@@ -21,11 +27,23 @@ function SingIn() {
         setCookie('access-token', userCredential.user.accessToken, {
           path: '/',
         });
-        const { user } = userCredential;
+        navigate('/');
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
+        switch (errorCode) {
+          case 'auth/user-not-found':
+            setErrorMessage('회원을 찾을 수 없습니다.');
+            break;
+          case 'auth/wrong-password':
+            setErrorMessage('비밀번호를 확인해 주세요');
+            break;
+          case 'auth/invalid-email':
+            setErrorMessage('잘못된 이메일 형식입니다.');
+            break;
+          default:
+            setErrorMessage(errorCode);
+        }
       });
 
     signInWithUser(auth, email, password);
@@ -33,23 +51,24 @@ function SingIn() {
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, googleProvider)
-      .then((userCredential) => {
-        const { user } = userCredential;
+      .then(() => {
+        navigate('/');
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
+        setErrorMessage(errorCode);
       });
   };
 
   const userSingOutHandeler = () => {
     signOut(auth)
-      .then((userCredential) => {
+      .then(() => {
         removeCookie('access-token');
+        navigate('/');
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
+        setErrorMessage(errorCode);
       });
   };
 
@@ -71,6 +90,7 @@ function SingIn() {
       <button type="button" onClick={userSingOutHandeler}>
         로그아웃
       </button>
+      <p>{errorMessage}</p>
     </>
   );
 }

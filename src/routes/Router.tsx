@@ -110,8 +110,7 @@ function Router() {
       }
       setLocationFineDustInfo(checkedList[0][userEmail][cityName]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postDataList, userEmail, cityName]);
+  }, [postDataList, userEmail, cityName, checkedListDB]);
 
   return (
     <>
