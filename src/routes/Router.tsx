@@ -71,7 +71,9 @@ function Router() {
     (state) => state.locationSlice.checkedListDB
   );
 
-  const userEmail = useAppSelector((state) => state.locationSlice.userEmail[0]);
+  const userEmail: any = useAppSelector(
+    (state) => state.locationSlice.userEmail
+  );
 
   const [postDataList, setPostDataList] = useState<PostDataList[]>();
 

@@ -53,7 +53,7 @@ const initialState: LocationState = {
   postData: [],
   checkedList: [],
   checkedListDB: [],
-  userEmail: 'fine dust',
+  userEmail: 'finedust@finedust.com',
   selectCityName: '',
 };
 
@@ -88,8 +88,8 @@ interface LocationState {
   isError: boolean;
   postData: PostData[];
   checkedList: [];
-  checkedListDB: [];
-  userEmail: string;
+  checkedListDB: any[];
+  userEmail: string | undefined;
   selectCityName: string;
 }
 
@@ -103,7 +103,7 @@ export const locationSlice = createSlice({
   },
   extraReducers: (builder) => {
     // asyncUpFetch
-    builder.addCase(asyncUpFetch.pending, (state, action) => {
+    builder.addCase(asyncUpFetch.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(asyncUpFetch.fulfilled, (state, action) => {
@@ -116,32 +116,44 @@ export const locationSlice = createSlice({
     });
 
     // getFavoriteList
-    builder.addCase(getFavoriteList.fulfilled, (state, action: any) => {
+    builder.addCase(getFavoriteList.fulfilled, (state, action) => {
       state.checkedListDB = action.payload;
-      const emailSplit: any = auth.currentUser?.email?.split('.');
+      const emailSplit = auth.currentUser?.email?.split('.');
+
+      let userEmail;
+
+      if (emailSplit) {
+        userEmail = emailSplit.join('');
+      } else if (state.userEmail) {
+        const tset = state.userEmail.split('.');
+        userEmail = tset.join('');
+      }
+
       // const email = emailSplit[0];
       if (emailSplit) {
-        state.userEmail = emailSplit;
+        state.userEmail = userEmail;
       } else {
-        state.userEmail = 'fine dust';
+        state.userEmail = 'finedust@finedust.com';
       }
     });
-    builder.addCase(getFavoriteList.rejected, (state, action) => {
+    builder.addCase(getFavoriteList.rejected, (state) => {
       state.isError = false;
     });
 
     // updateFavoriteList
-    builder.addCase(updateFavoriteList.fulfilled, (state: any, action) => {
+    builder.addCase(updateFavoriteList.fulfilled, (state, action) => {
       state.selectCityName = action.payload.cityName;
-      const emailSplit: any = auth.currentUser?.email?.split('.');
+      const emailSplit: string[] | undefined =
+        auth.currentUser?.email?.split('.');
+      const userEmail: any = emailSplit?.join('');
       let userFavoriteData;
 
       if (!emailSplit) {
         userFavoriteData = {};
       } else {
         userFavoriteData = {
-          [emailSplit[0]]: {
-            [state.checkedList[0].cityName]: current(state.checkedList),
+          [userEmail]: {
+            [state.selectCityName]: state.checkedList,
           },
         };
       }
@@ -152,7 +164,7 @@ export const locationSlice = createSlice({
         if (!state.checkedListDB.length) {
           userFavoriteDataDB = [];
         } else {
-          userFavoriteDataDB = state.checkedListDB[0][emailSplit[0]];
+          userFavoriteDataDB = state.checkedListDB[0][userEmail];
         }
       }
 
@@ -160,9 +172,9 @@ export const locationSlice = createSlice({
 
       if (emailSplit) {
         updateUserFavoriteList = {
-          [emailSplit[0]]: {
+          [userEmail]: {
             ...userFavoriteDataDB,
-            ...userFavoriteData[emailSplit[0]],
+            ...userFavoriteData[userEmail],
           },
         };
       }
@@ -172,8 +184,7 @@ export const locationSlice = createSlice({
 
       if (updateUserFavoriteList) {
         newDataName =
-          updateUserFavoriteList[emailSplit[0]][state.selectCityName][0]
-            .cityName;
+          updateUserFavoriteList[userEmail][state.selectCityName][0].cityName;
       }
 
       if (selectDataName === newDataName) {

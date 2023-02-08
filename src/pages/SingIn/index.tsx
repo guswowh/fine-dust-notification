@@ -15,7 +15,7 @@ function SingIn() {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  console.log(auth.currentUser);
+  // console.log(auth.currentUser);
   // console.log(cookies['access-token']);
 
   const userSingUpHandeler = () => {
