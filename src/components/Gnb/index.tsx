@@ -1,7 +1,16 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../../store';
-import { FavoritesIcon, LocationsIcon, MyLocationIcon } from '../icons';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { auth } from '../../config/firebace';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { validateLoginStatus } from '../../store/slices/locationSlice';
+import {
+  DropDownIconOff,
+  DropDownIconOn,
+  FavoritesIcon,
+  LocationsIcon,
+  MyLocationIcon,
+} from '../icons';
 import Wrapper from './style';
 
 interface Props {
@@ -13,6 +22,9 @@ function Gnb({ buttonName }: Props) {
   const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
   const [isLogin, setIsLogin] = useState(false);
   const [isVisibility, setIsVisibility] = useState(false);
+  const [isButtonVisibility, setIsButtonVisibility] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     switch (location.pathname) {
@@ -35,8 +47,71 @@ function Gnb({ buttonName }: Props) {
     }
   }, [userEmail]);
 
+  const userButtonHandler = () => {
+    setIsButtonVisibility(!isButtonVisibility);
+  };
+
+  const userSingOutHandeler = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(validateLoginStatus(false));
+        navigate('/');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
+  };
+
   return (
     <Wrapper location={location.pathname}>
+      <div className="dropDownMenuContainer">
+        <button className="onIcon" type="button" onClick={userButtonHandler}>
+          {isButtonVisibility ? <DropDownIconOff /> : <DropDownIconOn />}
+        </button>
+        {isButtonVisibility ? (
+          <div className="menuContainer">
+            {isLogin ? (
+              <Link to="/signUp">
+                <button
+                  className="button"
+                  type="button"
+                  onClick={userSingOutHandeler}
+                >
+                  Sign Out
+                </button>
+              </Link>
+            ) : (
+              <>
+                <Link to="/signIn">
+                  <button className="button" type="button">
+                    Sign In
+                  </button>
+                </Link>
+                <Link to="/signUp">
+                  <button className="button" type="button">
+                    Sign Up
+                  </button>
+                </Link>
+              </>
+            )}
+
+            {isVisibility ? (
+              <Link to="/">
+                <button className="button" type="button">
+                  Home
+                </button>
+              </Link>
+            ) : (
+              ''
+            )}
+
+            {/* <button type="button">Sing Out</button> */}
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
       {isVisibility ? (
         <>
           <div className="contents">

@@ -1,5 +1,9 @@
+/* eslint-disable react/require-default-props */
 export interface IconProps {
-  fillOpacity: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  fillOpacity?: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  size?: string;
 }
 
 export function MyLocationIcon({ fillOpacity }: IconProps) {
@@ -1364,11 +1368,7 @@ export function OffCheckIcon() {
   );
 }
 
-interface Props {
-  size: string;
-}
-
-export function GoogleIcon({ size }: Props) {
+export function GoogleIcon({ size }: IconProps) {
   return (
     <svg
       width={size}
@@ -1404,6 +1404,110 @@ export function GoogleIcon({ size }: Props) {
         <clipPath id="clip0_229_9">
           <rect width="48" height="48" fill="white" />
         </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+export function DropDownIconOn() {
+  return (
+    <svg
+      width="100%"
+      viewBox="0 0 62 62"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="31" cy="31" r="31" fill="#9BB4F6" />
+      <rect x="20" y="20" width="22" height="4" rx="2" fill="white" />
+      <rect x="20" y="37.6001" width="22" height="4" rx="2" fill="white" />
+      <rect x="20" y="28.7998" width="22" height="4" rx="2" fill="white" />
+    </svg>
+  );
+}
+
+export function DropDownIconOff() {
+  return (
+    <svg
+      width="100%"
+      viewBox="0 0 104 104"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_15_1039)">
+        <circle cx="52" cy="52" r="52" fill="#9BB4F6" />
+      </g>
+      <rect
+        x="40.6863"
+        y="35.0294"
+        width="40"
+        height="8"
+        rx="4"
+        transform="rotate(45 40.6863 35.0294)"
+        fill="white"
+      />
+      <rect
+        x="68.9705"
+        y="40.6863"
+        width="40"
+        height="8"
+        rx="4"
+        transform="rotate(135 68.9705 40.6863)"
+        fill="white"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_15_1039"
+          x="-12"
+          y="-12"
+          width="128"
+          height="128"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_15_1039"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_15_1039"
+            result="effect2_innerShadow_15_1039"
+          />
+        </filter>
       </defs>
     </svg>
   );
