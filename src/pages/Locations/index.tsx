@@ -86,31 +86,29 @@ function Location({
   };
 
   return (
-    <>
-      <S.Wrapper>
-        <TitleSpace title="locations" userName={userName} />
-        <ul className="menuSpace">
-          <li>
-            <Dropdown
-              cityName={cityName}
-              setCityName={setCityName}
-              itemList={dropDownCityList}
-            />
-          </li>
-        </ul>
-        {isLoading ? (
-          <S.SpinnerContainer>
-            <Spinner />
-          </S.SpinnerContainer>
-        ) : (
-          <LocationItemList
-            mapList={checkedList}
-            cityCheckHandler={cityCheckHandler}
+    <S.Wrapper>
+      <TitleSpace title="locations" userName={userName} />
+      <ul className="menuSpace">
+        <li>
+          <Dropdown
+            cityName={cityName}
+            setCityName={setCityName}
+            itemList={dropDownCityList}
           />
-        )}
-      </S.Wrapper>
+        </li>
+      </ul>
+      {isLoading ? (
+        <S.SpinnerContainer>
+          <Spinner />
+        </S.SpinnerContainer>
+      ) : (
+        <LocationItemList
+          mapList={checkedList}
+          cityCheckHandler={cityCheckHandler}
+        />
+      )}
       <Gnb />
-    </>
+    </S.Wrapper>
   );
 }
 

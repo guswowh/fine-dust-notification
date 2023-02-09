@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Gnb from '../components/Gnb';
 import MyLocation from '../pages/MyLocation';
 import Location from '../pages/Locations';
 import Favorites from '../pages/Favorites';

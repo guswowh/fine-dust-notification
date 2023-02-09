@@ -88,16 +88,14 @@ function Favorites({
   };
 
   return (
-    <>
-      <div>
-        <TitleSpace title="favorites" userName={userName} />
-        <LocationItemList
-          mapList={filterList}
-          cityCheckHandler={cityCheckHandler}
-        />
-      </div>
+    <div>
+      <TitleSpace title="favorites" userName={userName} />
+      <LocationItemList
+        mapList={filterList}
+        cityCheckHandler={cityCheckHandler}
+      />
       <Gnb />
-    </>
+    </div>
   );
 }
 

@@ -33,7 +33,7 @@ interface UserPost {
 
 function LocationItem({ post, cityCheckHandler }: UserPost) {
   const location = useLocation();
-  const userEmail = useAppSelector((item) => item.locationSlice.userEmail);
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {

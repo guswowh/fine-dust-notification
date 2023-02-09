@@ -18,6 +18,21 @@ const Wrapper = styled.div`
     );
     display: flex;
     justify-content: center;
+    & .submitButton {
+      width: 100%;
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #9bb4f6;
+      box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #ffffff;
+      border-radius: 24px;
+      border-radius: 2.4rem;
+      margin: 0 4rem;
+      color: #fff;
+      font-size: 4rem;
+      text-transform: capitalize;
+    }
     > ul {
       display: flex;
       justify-content: center;

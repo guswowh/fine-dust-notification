@@ -65,7 +65,7 @@ function MyLocation({
 
   const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
   const [userName, setUserName] = useState<string | undefined>('');
-  const isLogin = useAppSelector((item) => item.locationSlice.isLogin);
+  const isLogin = useAppSelector((state) => state.locationSlice.isLogin);
   const dispatch = useAppDispatch();
 
   const dropDownCityList = useMemo(() => {
@@ -102,39 +102,37 @@ function MyLocation({
   }, [stationName, locationFineDustInfo]);
 
   return (
-    <>
-      <S.Wrapper>
-        <TitleSpace title="my location" userName={userName} />
-        <ul className="menuSpace">
-          <li>
-            <Dropdown
-              cityName={cityName}
-              setCityName={setCityName}
-              itemList={dropDownCityList}
-            />
-          </li>
-          <li>
-            <Dropdown
-              cityName={stationName}
-              setCityName={setStationName}
-              itemList={dropDownStationList}
-            />
-          </li>
-        </ul>
-        {isLoading ? (
-          <S.SpinnerContainer>
-            <Spinner />
-          </S.SpinnerContainer>
-        ) : (
-          <div className="contents">
-            {stationFineDustInfo.map((post: Post) => (
-              <LocationItem key={post.stationName} post={post} />
-            ))}
-          </div>
-        )}
-      </S.Wrapper>
+    <S.Wrapper>
+      <TitleSpace title="my location" userName={userName} />
+      <ul className="menuSpace">
+        <li>
+          <Dropdown
+            cityName={cityName}
+            setCityName={setCityName}
+            itemList={dropDownCityList}
+          />
+        </li>
+        <li>
+          <Dropdown
+            cityName={stationName}
+            setCityName={setStationName}
+            itemList={dropDownStationList}
+          />
+        </li>
+      </ul>
+      {isLoading ? (
+        <S.SpinnerContainer>
+          <Spinner />
+        </S.SpinnerContainer>
+      ) : (
+        <div className="contents">
+          {stationFineDustInfo.map((post: Post) => (
+            <LocationItem key={post.stationName} post={post} />
+          ))}
+        </div>
+      )}
       <Gnb />
-    </>
+    </S.Wrapper>
   );
 }
 
