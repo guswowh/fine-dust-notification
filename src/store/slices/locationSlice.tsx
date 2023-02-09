@@ -2,7 +2,6 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import { getDocs, collection, doc, updateDoc } from 'firebase/firestore';
 import axios from 'axios';
-import { string } from 'prop-types';
 import { auth, db } from '../../config/firebace';
 
 export const asyncUpFetch = createAsyncThunk(
@@ -43,13 +42,13 @@ export const updateFavoriteList = createAsyncThunk(
   async (cityName: string) => {
     const favoriteDoc = doc(db, 'favorites', '0hAEaTo8wv2lpDVAJ86T');
     return { favoriteDoc, cityName };
-    // return updateDoc(favoriteDoc);
   }
 );
 
 const initialState: LocationState = {
   isLoading: true,
   isError: false,
+  isLogin: false,
   postData: [],
   checkedList: [],
   checkedListDB: [],
@@ -86,10 +85,11 @@ interface PostData {
 interface LocationState {
   isLoading: boolean;
   isError: boolean;
+  isLogin: boolean;
   postData: PostData[];
   checkedList: [];
   checkedListDB: any[];
-  userEmail: string | undefined;
+  userEmail: string;
   selectCityName: string;
 }
 
@@ -99,6 +99,9 @@ export const locationSlice = createSlice({
   reducers: {
     favorites: (state, action) => {
       state.checkedList = action.payload;
+    },
+    validateLoginStatus: (state, action) => {
+      state.isLogin = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -120,13 +123,13 @@ export const locationSlice = createSlice({
       state.checkedListDB = action.payload;
       const emailSplit = auth.currentUser?.email?.split('.');
 
-      let userEmail;
+      let userEmail = 'finedust@finedust.com';
 
       if (emailSplit) {
         userEmail = emailSplit.join('');
       } else if (state.userEmail) {
-        const tset = state.userEmail.split('.');
-        userEmail = tset.join('');
+        const userEmailSplit = state.userEmail.split('.');
+        userEmail = userEmailSplit.join('');
       }
 
       // const email = emailSplit[0];
@@ -195,4 +198,4 @@ export const locationSlice = createSlice({
 });
 
 export const favoritesList = locationSlice.actions.favorites;
-// export const asyncUpFetch
+export const { validateLoginStatus } = locationSlice.actions;

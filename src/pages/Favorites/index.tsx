@@ -1,13 +1,23 @@
-import React, { useEffect, useMemo, Dispatch, SetStateAction } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useLayoutEffect,
+} from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import {
   favoritesList,
   getFavoriteList,
+  updateFavoriteList,
 } from '../../store/slices/locationSlice';
 import LocationItemList from '../../components/LocationItemList';
 import TitleSpace from '../../components/TitleSpace';
+import Gnb from '../../components/Gnb';
 
 interface Props {
+  cityName: string;
   locationFineDustInfo: {
     cityName: string;
     stationName: string;
@@ -38,7 +48,13 @@ interface FilterItem {
   isCheck: boolean;
 }
 
-function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
+function Favorites({
+  cityName,
+  locationFineDustInfo,
+  setLocationFineDustInfo,
+}: Props) {
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
+  const [userName, setUserName] = useState<string | undefined>('');
   const location = useAppSelector((state) => state.locationSlice);
   const dispatch = useAppDispatch();
 
@@ -48,6 +64,11 @@ function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
     });
     return filterItem;
   }, [location.checkedList]);
+
+  useLayoutEffect(() => {
+    const userEmailSplit: string | undefined = userEmail?.split('@')[0];
+    setUserName(userEmailSplit);
+  }, [userEmail]);
 
   useEffect(() => {
     dispatch(getFavoriteList());
@@ -63,16 +84,20 @@ function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
         item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
       )
     );
+    dispatch(updateFavoriteList(cityName));
   };
 
   return (
-    <div>
-      <TitleSpace title="favorites" userName="hyun jea cho" />
-      <LocationItemList
-        mapList={filterList}
-        cityCheckHandler={cityCheckHandler}
-      />
-    </div>
+    <>
+      <div>
+        <TitleSpace title="favorites" userName={userName} />
+        <LocationItemList
+          mapList={filterList}
+          cityCheckHandler={cityCheckHandler}
+        />
+      </div>
+      <Gnb />
+    </>
   );
 }
 

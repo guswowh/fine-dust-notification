@@ -71,9 +71,7 @@ function Router() {
     (state) => state.locationSlice.checkedListDB
   );
 
-  const userEmail: any = useAppSelector(
-    (state) => state.locationSlice.userEmail
-  );
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
 
   const [postDataList, setPostDataList] = useState<PostDataList[]>();
 
@@ -115,48 +113,46 @@ function Router() {
   }, [postDataList, userEmail, cityName, checkedListDB]);
 
   return (
-    <>
-      <Routes>
-        <Route
-          index
-          element={
-            <MyLocation
-              cityName={cityName}
-              setCityName={setCityName}
-              locationFineDustInfo={locationFineDustInfo}
-              stationName={stationName}
-              setStationName={setStationName}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path="location"
-          element={
-            <Location
-              cityName={cityName}
-              setCityName={setCityName}
-              locationFineDustInfo={locationFineDustInfo}
-              setLocationFineDustInfo={setLocationFineDustInfo}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path="favorites"
-          element={
-            <Favorites
-              locationFineDustInfo={locationFineDustInfo}
-              setLocationFineDustInfo={setLocationFineDustInfo}
-            />
-          }
-        />
-        <Route path="signUp" element={<SingUp />} />
-        <Route path="signIn" element={<SingIn />} />
-        <Route path="errorPage" element={<ErrorPage />} />
-      </Routes>
-      <Gnb />
-    </>
+    <Routes>
+      <Route
+        index
+        element={
+          <MyLocation
+            cityName={cityName}
+            setCityName={setCityName}
+            locationFineDustInfo={locationFineDustInfo}
+            stationName={stationName}
+            setStationName={setStationName}
+            isLoading={isLoading}
+          />
+        }
+      />
+      <Route
+        path="location"
+        element={
+          <Location
+            cityName={cityName}
+            setCityName={setCityName}
+            locationFineDustInfo={locationFineDustInfo}
+            setLocationFineDustInfo={setLocationFineDustInfo}
+            isLoading={isLoading}
+          />
+        }
+      />
+      <Route
+        path="favorites"
+        element={
+          <Favorites
+            cityName={cityName}
+            locationFineDustInfo={locationFineDustInfo}
+            setLocationFineDustInfo={setLocationFineDustInfo}
+          />
+        }
+      />
+      <Route path="signUp" element={<SingUp />} />
+      <Route path="signIn" element={<SingIn />} />
+      <Route path="errorPage" element={<ErrorPage />} />
+    </Routes>
   );
 }
 

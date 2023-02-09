@@ -16,7 +16,7 @@ function SingUp() {
     formState: { errors },
     handleSubmit,
     getValues,
-    watch,
+    // watch,
   } = useForm<SubmitData>();
 
   const navigate = useNavigate();
@@ -26,8 +26,8 @@ function SingUp() {
     const { email } = data;
     const { password } = data;
     signUpWithUser(auth, email, password)
-      .then((userCredential) => {
-        const { user } = userCredential;
+      .then(() => {
+        // const { user } = userCredential;
         navigate('/signIn');
       })
       .catch((error) => {
@@ -41,28 +41,6 @@ function SingUp() {
         }
       });
   };
-
-  // console.log(watch());
-
-  // const [userInfo, setUserInfo] = useState({ email: '', password: '' });
-
-  // const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setUserInfo({ ...userInfo, [name]: value });
-  // };
-
-  // const userSingUpHandeler = () => {
-  //   const { email } = userInfo;
-  //   const { password } = userInfo;
-  //   signUpWithUser(auth, email, password)
-  //     .then((userCredential) => {
-  //       const { user } = userCredential;
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //     });
-  // };
 
   return (
     <>

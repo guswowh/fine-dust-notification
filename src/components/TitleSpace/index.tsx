@@ -3,7 +3,7 @@ import * as S from './style';
 
 interface Props {
   title: string;
-  userName: string;
+  userName: string | undefined;
 }
 
 function TitleSpace({ title, userName }: Props) {
@@ -19,4 +19,4 @@ function TitleSpace({ title, userName }: Props) {
   );
 }
 
-export default TitleSpace;
+export default React.memo(TitleSpace);

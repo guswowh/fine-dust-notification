@@ -1,14 +1,17 @@
-import { confirmPasswordReset, signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup, signOut } from 'firebase/auth';
 import React, { useState } from 'react';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider, signInWithUser } from '../../config/firebace';
+import { useAppDispatch } from '../../store';
+import { validateLoginStatus } from '../../store/slices/locationSlice';
 
 function SingIn() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
-  const [cookies, setCookie, removeCookie] = useCookies();
+  // const [cookies, setCookie, removeCookie] = useCookies();
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,9 +27,11 @@ function SingIn() {
 
     signInWithUser(auth, email, password)
       .then((userCredential: any) => {
-        setCookie('access-token', userCredential.user.accessToken, {
-          path: '/',
-        });
+        // setCookie('access-token', userCredential.user.accessToken, {
+        //   path: '/',
+        // });
+        const { user } = userCredential;
+        dispatch(validateLoginStatus(true));
         navigate('/');
       })
       .catch((error) => {
@@ -63,7 +68,8 @@ function SingIn() {
   const userSingOutHandeler = () => {
     signOut(auth)
       .then(() => {
-        removeCookie('access-token');
+        // removeCookie('access-token');
+        dispatch(validateLoginStatus(false));
         navigate('/');
       })
       .catch((error) => {

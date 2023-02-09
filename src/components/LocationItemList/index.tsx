@@ -12,6 +12,7 @@ interface UserPost {
 }
 
 interface MapList {
+  cityName: string;
   stationName: string;
   fineDust: string;
   isCheck: boolean;

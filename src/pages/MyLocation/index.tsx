@@ -5,12 +5,16 @@ import React, {
   Dispatch,
   SetStateAction,
   useMemo,
+  useLayoutEffect,
 } from 'react';
 import Dropdown from '../../components/DropDown';
 import LocationItem from '../../components/LocationItem';
 import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
+import { useAppDispatch, useAppSelector } from '../../store';
 import * as S from './style';
+import { getFavoriteList } from '../../store/slices/locationSlice';
+import Gnb from '../../components/Gnb';
 
 interface Props {
   cityName: string;
@@ -59,6 +63,11 @@ function MyLocation({
     },
   ]);
 
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
+  const [userName, setUserName] = useState<string | undefined>('');
+  const isLogin = useAppSelector((item) => item.locationSlice.isLogin);
+  const dispatch = useAppDispatch();
+
   const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {
       return item !== cityName;
@@ -78,44 +87,54 @@ function MyLocation({
     return filterData;
   }, [locationFineDustInfo, stationName]);
 
+  useLayoutEffect(() => {
+    const userEmailSplit: string | undefined = userEmail?.split('@')[0];
+    setUserName(userEmailSplit);
+    dispatch(getFavoriteList());
+  }, [dispatch, isLogin, userEmail]);
+
   useEffect(() => {
     const filterPostDataList = locationFineDustInfo.filter((item) => {
       return item.stationName === stationName;
     });
+
     setStationFineDustInfo(filterPostDataList);
   }, [stationName, locationFineDustInfo]);
 
   return (
-    <S.Wrapper>
-      <TitleSpace title="my location" userName="hyun jae cho" />
-      <ul className="menuSpace">
-        <li>
-          <Dropdown
-            cityName={cityName}
-            setCityName={setCityName}
-            itemList={dropDownCityList}
-          />
-        </li>
-        <li>
-          <Dropdown
-            cityName={stationName}
-            setCityName={setStationName}
-            itemList={dropDownStationList}
-          />
-        </li>
-      </ul>
-      {isLoading ? (
-        <S.SpinnerContainer>
-          <Spinner />
-        </S.SpinnerContainer>
-      ) : (
-        <div className="contents">
-          {stationFineDustInfo.map((post: Post) => (
-            <LocationItem key={post.stationName} post={post} />
-          ))}
-        </div>
-      )}
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        <TitleSpace title="my location" userName={userName} />
+        <ul className="menuSpace">
+          <li>
+            <Dropdown
+              cityName={cityName}
+              setCityName={setCityName}
+              itemList={dropDownCityList}
+            />
+          </li>
+          <li>
+            <Dropdown
+              cityName={stationName}
+              setCityName={setStationName}
+              itemList={dropDownStationList}
+            />
+          </li>
+        </ul>
+        {isLoading ? (
+          <S.SpinnerContainer>
+            <Spinner />
+          </S.SpinnerContainer>
+        ) : (
+          <div className="contents">
+            {stationFineDustInfo.map((post: Post) => (
+              <LocationItem key={post.stationName} post={post} />
+            ))}
+          </div>
+        )}
+      </S.Wrapper>
+      <Gnb />
+    </>
   );
 }
 

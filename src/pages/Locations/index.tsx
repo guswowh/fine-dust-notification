@@ -4,8 +4,11 @@ import React, {
   Dispatch,
   SetStateAction,
   useMemo,
+  useState,
+  useLayoutEffect,
 } from 'react';
 import Dropdown from '../../components/DropDown';
+import Gnb from '../../components/Gnb';
 import LocationItemList from '../../components/LocationItemList';
 import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
@@ -49,6 +52,8 @@ function Location({
   isLoading,
 }: Props) {
   const cityList = useRef(['서울', '경기', '인천', '대구', '부산']);
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
+  const [userName, setUserName] = useState<string | undefined>('');
   const dispatch = useAppDispatch();
   const checkedList = useAppSelector(
     (state) => state.locationSlice.checkedList
@@ -60,6 +65,11 @@ function Location({
     });
     return filterCityList;
   }, [cityName]);
+
+  useLayoutEffect(() => {
+    const userEmailSplit: string | undefined = userEmail?.split('@')[0];
+    setUserName(userEmailSplit);
+  }, [userEmail]);
 
   useEffect(() => {
     dispatch(getFavoriteList());
@@ -76,28 +86,31 @@ function Location({
   };
 
   return (
-    <S.Wrapper>
-      <TitleSpace title="locations" userName="hyun jae cho" />
-      <ul className="menuSpace">
-        <li>
-          <Dropdown
-            cityName={cityName}
-            setCityName={setCityName}
-            itemList={dropDownCityList}
+    <>
+      <S.Wrapper>
+        <TitleSpace title="locations" userName={userName} />
+        <ul className="menuSpace">
+          <li>
+            <Dropdown
+              cityName={cityName}
+              setCityName={setCityName}
+              itemList={dropDownCityList}
+            />
+          </li>
+        </ul>
+        {isLoading ? (
+          <S.SpinnerContainer>
+            <Spinner />
+          </S.SpinnerContainer>
+        ) : (
+          <LocationItemList
+            mapList={checkedList}
+            cityCheckHandler={cityCheckHandler}
           />
-        </li>
-      </ul>
-      {isLoading ? (
-        <S.SpinnerContainer>
-          <Spinner />
-        </S.SpinnerContainer>
-      ) : (
-        <LocationItemList
-          mapList={checkedList}
-          cityCheckHandler={cityCheckHandler}
-        />
-      )}
-    </S.Wrapper>
+        )}
+      </S.Wrapper>
+      <Gnb />
+    </>
   );
 }
 
