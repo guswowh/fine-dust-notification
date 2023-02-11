@@ -33,6 +33,7 @@ export const getFavoriteList = createAsyncThunk(
       ...item.data(),
       id: item.id,
     }));
+    console.log(filteredData);
     return filteredData;
   }
 );
@@ -52,7 +53,7 @@ const initialState: LocationState = {
   postData: [],
   checkedList: [],
   checkedListDB: [],
-  userEmail: 'finedust@finedust.com',
+  userEmail: '',
   selectCityName: '',
 };
 
@@ -98,6 +99,7 @@ export const locationSlice = createSlice({
   initialState,
   reducers: {
     favorites: (state, action) => {
+      // console.log(action.payload);
       state.checkedList = action.payload;
     },
     validateLoginStatus: (state, action) => {
@@ -132,7 +134,6 @@ export const locationSlice = createSlice({
         userEmail = userEmailSplit.join('');
       }
 
-      // const email = emailSplit[0];
       if (emailSplit) {
         state.userEmail = userEmail;
       } else {
@@ -156,43 +157,33 @@ export const locationSlice = createSlice({
       } else {
         userFavoriteData = {
           [userEmail]: {
-            [state.selectCityName]: state.checkedList,
+            [state.selectCityName]: current(state.checkedList),
           },
         };
       }
 
-      let userFavoriteDataDB = {};
+      const userFavoriteDataDB = state.checkedListDB[0][userEmail];
 
-      if (state.userEmail !== 'finedust') {
-        if (!state.checkedListDB.length) {
-          userFavoriteDataDB = [];
-        } else {
-          userFavoriteDataDB = state.checkedListDB[0][userEmail];
-        }
-      }
+      let updateUserFavoriteList = { [userEmail]: {} };
 
-      let updateUserFavoriteList: any;
-
-      if (emailSplit) {
+      if (!userFavoriteDataDB[state.selectCityName]) {
         updateUserFavoriteList = {
           [userEmail]: {
             ...userFavoriteDataDB,
             ...userFavoriteData[userEmail],
           },
         };
+      } else {
+        Object.assign(
+          userFavoriteDataDB[state.selectCityName],
+          userFavoriteData[userEmail][state.selectCityName]
+        );
+        updateUserFavoriteList = {
+          [userEmail]: userFavoriteDataDB,
+        };
       }
 
-      const selectDataName = state.selectCityName;
-      let newDataName;
-
-      if (updateUserFavoriteList) {
-        newDataName =
-          updateUserFavoriteList[userEmail][state.selectCityName][0].cityName;
-      }
-
-      if (selectDataName === newDataName) {
-        updateDoc(action.payload.favoriteDoc, updateUserFavoriteList);
-      }
+      updateDoc(action.payload.favoriteDoc, updateUserFavoriteList);
     });
   },
 });

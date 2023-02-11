@@ -27,6 +27,7 @@ interface Props {
     cityName: string;
     stationName: string;
     fineDust: string;
+    fineDustValue: string;
     dateTime: string;
     fineDustConcentration: string;
     isCheck: boolean;
@@ -39,9 +40,20 @@ interface LocationFineDustInfo {
   cityName: string;
   stationName: string;
   fineDust: string;
+  fineDustValue: string;
   dateTime: string;
   fineDustConcentration: string;
   isCheck: boolean;
+}
+
+interface Post {
+  stationName: string;
+  cityName: string;
+  fineDust: string;
+  fineDustValue: string;
+  isCheck: boolean;
+  fineDustConcentration?: string;
+  dateTime?: string;
 }
 
 function Location({
@@ -73,13 +85,18 @@ function Location({
 
   useEffect(() => {
     dispatch(getFavoriteList());
-    dispatch(favoritesList(locationFineDustInfo));
-  }, [locationFineDustInfo, dispatch, cityName]);
+  }, [dispatch]);
 
-  const cityCheckHandler = (id: string) => {
+  useEffect(() => {
+    dispatch(favoritesList(locationFineDustInfo));
+  }, [locationFineDustInfo, dispatch]);
+
+  const cityCheckHandler = (post: Post) => {
     setLocationFineDustInfo(
       locationFineDustInfo.map((item: LocationFineDustInfo) =>
-        item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
+        item.stationName === post.stationName
+          ? { ...item, isCheck: !item.isCheck }
+          : item
       )
     );
     dispatch(updateFavoriteList(cityName));
@@ -112,4 +129,4 @@ function Location({
   );
 }
 
-export default Location;
+export default React.memo(Location);

@@ -14,6 +14,7 @@ function Router() {
     cityName: string;
     dateTime: string;
     fineDust: string;
+    fineDustValue: string;
     fineDustConcentration: string;
     isCheck: boolean;
     stationName: string;
@@ -23,6 +24,7 @@ function Router() {
     cityName: string;
     stationName: string;
     fineDust: string;
+    fineDustValue: string;
     dateTime: string;
     fineDustConcentration: string;
     isCheck: boolean;
@@ -42,6 +44,7 @@ function Router() {
       cityName: '',
       stationName: '',
       fineDust: '',
+      fineDustValue: '',
       dateTime: '',
       fineDustConcentration: '',
       isCheck: false,
@@ -80,6 +83,7 @@ function Router() {
         cityName: item.sidoName,
         stationName: item.stationName,
         fineDust: item.pm10Grade,
+        fineDustValue: item.pm10Value,
         dateTime: item.dataTime,
         fineDustConcentration: item.pm25Value,
         isCheck: false,
@@ -138,16 +142,7 @@ function Router() {
           />
         }
       />
-      <Route
-        path="favorites"
-        element={
-          <Favorites
-            cityName={cityName}
-            locationFineDustInfo={locationFineDustInfo}
-            setLocationFineDustInfo={setLocationFineDustInfo}
-          />
-        }
-      />
+      <Route path="favorites" element={<Favorites />} />
       <Route path="signUp" element={<SingUp />} />
       <Route path="signIn" element={<SingIn />} />
       <Route path="errorPage" element={<ErrorPage />} />

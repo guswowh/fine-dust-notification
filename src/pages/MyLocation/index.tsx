@@ -23,6 +23,7 @@ interface Props {
     cityName: string;
     stationName: string;
     fineDust: string;
+    fineDustValue: string;
     dateTime: string;
     fineDustConcentration: string;
     isCheck: boolean;
@@ -36,6 +37,7 @@ export interface Post {
   stationName: string;
   cityName: string;
   fineDust: string;
+  fineDustValue: string;
   isCheck: boolean;
 }
 
@@ -57,6 +59,7 @@ function MyLocation({
       cityName: '',
       stationName: '',
       fineDust: '',
+      fineDustValue: '',
       dateTime: '',
       fineDustConcentration: '',
       isCheck: false,

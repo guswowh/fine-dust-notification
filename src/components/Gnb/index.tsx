@@ -40,7 +40,7 @@ function Gnb({ buttonName }: Props) {
   }, [location.pathname]);
 
   useLayoutEffect(() => {
-    if (userEmail !== 'finedust@finedust.com') {
+    if (userEmail !== 'finedust@finedust.com' && userEmail) {
       setIsLogin(true);
     } else {
       setIsLogin(false);
@@ -105,8 +105,6 @@ function Gnb({ buttonName }: Props) {
             ) : (
               ''
             )}
-
-            {/* <button type="button">Sing Out</button> */}
           </div>
         ) : (
           ''

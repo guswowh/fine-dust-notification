@@ -17,13 +17,14 @@ interface Post {
   stationName: string;
   cityName: string;
   fineDust: string;
+  fineDustValue: string;
   isCheck: boolean;
   fineDustConcentration?: string;
   dateTime?: string;
 }
 
 interface CityCheckHandler {
-  (id: string): void;
+  (post: Post): void;
 }
 
 interface UserPost {
@@ -68,7 +69,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
             <p className="stationName">
               {post.cityName}/{post.stationName}
             </p>
-            <p className="fineDustInfo">미세먼지 농도: {post.fineDust}</p>
+            <p className="fineDustInfo">미세먼지 농도: {post.fineDustValue}</p>
             <p className="fineDustInfo">{post.dateTime} 기준</p>
             {isLogin ? (
               <div>
@@ -77,8 +78,7 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
                     className="checkIcon"
                     type="button"
                     onClick={() =>
-                      cityCheckHandler !== undefined &&
-                      cityCheckHandler(post.stationName)
+                      cityCheckHandler !== undefined && cityCheckHandler(post)
                     }
                   >
                     {post.isCheck ? <OnCheckIcon /> : <OffCheckIcon />}
