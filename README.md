@@ -10,12 +10,12 @@
 미세먼지 공공데이터 API 를 활용하여, 미세먼지 정보를 보기 쉽게 보여주는 서비스입니다.
 
 ## ⚒ 기술 스택
-- React
-- React-Router
-- Redux Toolkit
-- RTK Query
-- TypeScript
-- Styled Component
+- 언어 : TypeScript
+- 라이브러리 : React
+- 전역 상태관리 : Redux-Toolkit
+- 비동기 상태관리 : createAsyncThunk
+- 스타일 : Styled-Component
+- 기타 : Airbnb eslint, prettier, firebase
 
 ## 📄 기능 설명
 - 특정 시/도의 미세먼지 정보를 리스팅
