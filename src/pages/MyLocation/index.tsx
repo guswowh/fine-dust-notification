@@ -5,12 +5,16 @@ import React, {
   Dispatch,
   SetStateAction,
   useMemo,
+  useLayoutEffect,
 } from 'react';
 import Dropdown from '../../components/DropDown';
 import LocationItem from '../../components/LocationItem';
 import Spinner from '../../components/Spinner';
 import TitleSpace from '../../components/TitleSpace';
+import { useAppDispatch, useAppSelector } from '../../store';
 import * as S from './style';
+import { getFavoriteList } from '../../store/slices/locationSlice';
+import Gnb from '../../components/Gnb';
 
 interface Props {
   cityName: string;
@@ -19,6 +23,7 @@ interface Props {
     cityName: string;
     stationName: string;
     fineDust: string;
+    fineDustValue: string;
     dateTime: string;
     fineDustConcentration: string;
     isCheck: boolean;
@@ -32,6 +37,7 @@ export interface Post {
   stationName: string;
   cityName: string;
   fineDust: string;
+  fineDustValue: string;
   isCheck: boolean;
 }
 
@@ -53,11 +59,17 @@ function MyLocation({
       cityName: '',
       stationName: '',
       fineDust: '',
+      fineDustValue: '',
       dateTime: '',
       fineDustConcentration: '',
       isCheck: false,
     },
   ]);
+
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
+  const [userName, setUserName] = useState<string | undefined>('');
+  const isLogin = useAppSelector((state) => state.locationSlice.isLogin);
+  const dispatch = useAppDispatch();
 
   const dropDownCityList = useMemo(() => {
     const filterCityList = cityList.current.filter((item) => {
@@ -74,19 +86,27 @@ function MyLocation({
     const filterData = filter.map((item: DropDown) => {
       return item.stationName;
     });
+
     return filterData;
   }, [locationFineDustInfo, stationName]);
+
+  useLayoutEffect(() => {
+    const userEmailSplit: string | undefined = userEmail?.split('@')[0];
+    setUserName(userEmailSplit);
+    dispatch(getFavoriteList());
+  }, [dispatch, isLogin, userEmail]);
 
   useEffect(() => {
     const filterPostDataList = locationFineDustInfo.filter((item) => {
       return item.stationName === stationName;
     });
+
     setStationFineDustInfo(filterPostDataList);
   }, [stationName, locationFineDustInfo]);
 
   return (
     <S.Wrapper>
-      <TitleSpace title="my location" userName="hyun jae cho" />
+      <TitleSpace title="my location" userName={userName} />
       <ul className="menuSpace">
         <li>
           <Dropdown
@@ -114,6 +134,7 @@ function MyLocation({
           ))}
         </div>
       )}
+      <Gnb />
     </S.Wrapper>
   );
 }

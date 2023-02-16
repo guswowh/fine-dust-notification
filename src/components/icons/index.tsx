@@ -1,5 +1,9 @@
+/* eslint-disable react/require-default-props */
 export interface IconProps {
-  fillOpacity: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  fillOpacity?: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  size?: string;
 }
 
 export function MyLocationIcon({ fillOpacity }: IconProps) {
@@ -1360,6 +1364,151 @@ export function OffCheckIcon() {
         d="M35.6654 6.11687L37.2878 7.8709L39.0419 6.11979C43.9386 1.34736 50.7208 -0.824722 57.3862 0.284705C67.4572 1.96273 74.8388 10.6774 74.8388 20.8946V21.7424C74.8388 27.8084 72.3247 33.6114 67.8811 37.748L41.4683 62.4068C40.372 63.4299 38.9249 64 37.4194 64C35.9139 64 34.4668 63.4299 33.3705 62.4068L6.95621 37.748C2.5185 33.6114 0 27.8084 0 21.7424V20.8946C0 10.6774 7.38449 1.96273 17.4526 0.284705C23.9864 -0.824722 30.9002 1.34736 35.6654 6.11687C35.6654 6.11687 35.5338 6.11687 35.6654 6.11687ZM37.2878 17.7958L30.7102 10.9551C27.5383 7.91183 23.0363 6.46768 18.6074 7.20437C11.9201 8.31964 7.01614 14.1123 7.01614 20.8946V21.7424C7.01614 25.8644 8.72778 29.8109 11.7433 32.6174L37.4194 56.5892L63.1014 32.6174C66.1125 29.8109 67.8227 25.8644 67.8227 21.7424V20.8946C67.8227 14.1123 62.9114 8.31964 56.2314 7.20437C51.8025 6.46768 47.3005 7.91183 44.1286 10.9551L37.2878 17.7958Z"
         fill="#9CB5F7"
       />
+    </svg>
+  );
+}
+
+export function GoogleIcon({ size }: IconProps) {
+  return (
+    <svg
+      width={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clipPath="url(#clip0_229_9)">
+        <path d="M0 48V0H48V48H0Z" fill="white" />
+        <path
+          d="M5.32519 47.3434C2.74674 47.3434 0.656494 45.2532 0.656494 42.6747V5.32519C0.656494 2.74674 2.74674 0.656494 5.32519 0.656494H42.6747C45.2532 0.656494 47.3434 2.74674 47.3434 5.32519V42.6747C47.3434 45.2532 45.2532 47.3434 42.6747 47.3434H5.32519Z"
+          strokeWidth="0.999999"
+          strokeMiterlimit="10"
+        />
+        <path
+          d="M43.611 20.083H42V20H24V28H35.303C33.654 32.657 29.223 36 24 36C17.373 36 12 30.627 12 24C12 17.373 17.373 12 24 12C27.059 12 29.842 13.154 31.961 15.039L37.618 9.382C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24C4 35.045 12.955 44 24 44C35.045 44 44 35.045 44 24C44 22.659 43.862 21.35 43.611 20.083Z"
+          fill="#FFC107"
+        />
+        <path
+          d="M6.30591 14.691L12.8769 19.51C14.6549 15.108 18.9609 12 23.9999 12C27.0589 12 29.8419 13.154 31.9609 15.039L37.6179 9.382C34.0459 6.053 29.2679 4 23.9999 4C16.3179 4 9.65591 8.337 6.30591 14.691Z"
+          fill="#FF3D00"
+        />
+        <path
+          d="M24.0001 43.9999C29.1661 43.9999 33.8601 42.0229 37.4091 38.8079L31.2191 33.57C29.2111 35.0909 26.7151 35.9999 24.0001 35.9999C18.7981 35.9999 14.3811 32.683 12.7171 28.054L6.19507 33.0789C9.50507 39.5559 16.2271 43.9999 24.0001 43.9999Z"
+          fill="#4CAF50"
+        />
+        <path
+          d="M43.611 20.083H42V20H24V28H35.303C34.511 30.237 33.072 32.166 31.216 33.571C31.217 33.57 31.218 33.57 31.219 33.569L37.409 38.807C36.971 39.205 44 34 44 24C44 22.659 43.862 21.35 43.611 20.083Z"
+          fill="#1976D2"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_229_9">
+          <rect width="48" height="48" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+export function DropDownIconOn() {
+  return (
+    <svg
+      width="100%"
+      viewBox="0 0 62 62"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="31" cy="31" r="31" fill="#9BB4F6" />
+      <rect x="20" y="20" width="22" height="4" rx="2" fill="white" />
+      <rect x="20" y="37.6001" width="22" height="4" rx="2" fill="white" />
+      <rect x="20" y="28.7998" width="22" height="4" rx="2" fill="white" />
+    </svg>
+  );
+}
+
+export function DropDownIconOff() {
+  return (
+    <svg
+      width="100%"
+      viewBox="0 0 104 104"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_ii_15_1039)">
+        <circle cx="52" cy="52" r="52" fill="#9BB4F6" />
+      </g>
+      <rect
+        x="40.6863"
+        y="35.0294"
+        width="40"
+        height="8"
+        rx="4"
+        transform="rotate(45 40.6863 35.0294)"
+        fill="white"
+      />
+      <rect
+        x="68.9705"
+        y="40.6863"
+        width="40"
+        height="8"
+        rx="4"
+        transform="rotate(135 68.9705 40.6863)"
+        fill="white"
+      />
+      <defs>
+        <filter
+          id="filter0_ii_15_1039"
+          x="-12"
+          y="-12"
+          width="128"
+          height="128"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="12" dy="12" />
+          <feGaussianBlur stdDeviation="9" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.0509804 0 0 0 0 0.152941 0 0 0 0 0.313726 0 0 0 0.16 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="shape"
+            result="effect1_innerShadow_15_1039"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="-12" dy="-12" />
+          <feGaussianBlur stdDeviation="8" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_innerShadow_15_1039"
+            result="effect2_innerShadow_15_1039"
+          />
+        </filter>
+      </defs>
     </svg>
   );
 }

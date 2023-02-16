@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../store';
 import {
   ABitBadUiIcon,
   BadUiIcon,
@@ -13,14 +15,16 @@ import Wrapper from './style';
 
 interface Post {
   stationName: string;
+  cityName: string;
   fineDust: string;
+  fineDustValue: string;
   isCheck: boolean;
   fineDustConcentration?: string;
   dateTime?: string;
 }
 
 interface CityCheckHandler {
-  (id: string): void;
+  (post: Post): void;
 }
 
 interface UserPost {
@@ -30,6 +34,16 @@ interface UserPost {
 
 function LocationItem({ post, cityCheckHandler }: UserPost) {
   const location = useLocation();
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    if (userEmail !== 'finedust@finedust.com') {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [userEmail]);
 
   return (
     <Wrapper key={post.stationName}>
@@ -52,21 +66,27 @@ function LocationItem({ post, cityCheckHandler }: UserPost) {
               {post.fineDust === '5' ? 'too bad' : ''}
               {post.fineDust === null ? 'unknown' : ''}
             </p>
-            <p className="stationName">{post.stationName}</p>
-            <p className="fineDustInfo">미세먼지 농도: {post.fineDust}</p>
+            <p className="stationName">
+              {post.cityName}/{post.stationName}
+            </p>
+            <p className="fineDustInfo">미세먼지 농도: {post.fineDustValue}</p>
             <p className="fineDustInfo">{post.dateTime} 기준</p>
-
-            {location.pathname !== '/' ? (
-              <button
-                className="checkIcon"
-                type="button"
-                onClick={() =>
-                  cityCheckHandler !== undefined &&
-                  cityCheckHandler(post.stationName)
-                }
-              >
-                {post.isCheck ? <OnCheckIcon /> : <OffCheckIcon />}
-              </button>
+            {isLogin ? (
+              <div>
+                {location.pathname !== '/' ? (
+                  <button
+                    className="checkIcon"
+                    type="button"
+                    onClick={() =>
+                      cityCheckHandler !== undefined && cityCheckHandler(post)
+                    }
+                  >
+                    {post.isCheck ? <OnCheckIcon /> : <OffCheckIcon />}
+                  </button>
+                ) : (
+                  ''
+                )}
+              </div>
             ) : (
               ''
             )}

@@ -1,71 +1,109 @@
-import React, { useEffect, useMemo, Dispatch, SetStateAction } from 'react';
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../../store';
-import { favoritesList } from '../../store/slices/locationSlice';
+import React, { useEffect, useMemo, useState, useLayoutEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
+import {
+  favoritesList,
+  getFavoriteList,
+  updateFavoriteList,
+} from '../../store/slices/locationSlice';
 import LocationItemList from '../../components/LocationItemList';
 import TitleSpace from '../../components/TitleSpace';
+import Gnb from '../../components/Gnb';
 
-interface Props {
-  locationFineDustInfo: {
-    cityName: string;
-    stationName: string;
-    fineDust: string;
-    dateTime: string;
-    fineDustConcentration: string;
-    isCheck: boolean;
-  }[];
-  setLocationFineDustInfo: Dispatch<SetStateAction<LocationFineDustInfo[]>>;
-}
-
-export interface Post {
+interface Post {
   stationName: string;
-  fineDust: string;
-  isCheck: boolean;
-}
-
-interface LocationFineDustInfo {
   cityName: string;
-  stationName: string;
   fineDust: string;
-  dateTime: string;
-  fineDustConcentration: string;
+  fineDustValue: string;
   isCheck: boolean;
+  fineDustConcentration?: string;
+  dateTime?: string;
 }
 
 interface FilterItem {
   isCheck: boolean;
 }
 
-function Favorites({ locationFineDustInfo, setLocationFineDustInfo }: Props) {
-  const location = useAppSelector((state) => state.locationSlice);
-  const dispatch = useDispatch();
-
-  const filterList = useMemo(() => {
-    const filterItem = location.checkedList.filter((item: FilterItem) => {
-      return item.isCheck === true;
-    });
-    return filterItem;
-  }, [location.checkedList]);
+function Favorites() {
+  const userEmail = useAppSelector((state) => state.locationSlice.userEmail);
+  const [userName, setUserName] = useState<string | undefined>('');
+  const dispatch = useAppDispatch();
+  const checkedListDB = useAppSelector(
+    (state) => state.locationSlice.checkedListDB
+  );
+  const [fineDustInfo, setFineDustInfo] = useState([
+    {
+      cityName: '',
+      stationName: '',
+      fineDust: '',
+      fineDustValue: '',
+      dateTime: '',
+      fineDustConcentration: '',
+      isCheck: false,
+    },
+  ]);
 
   useEffect(() => {
-    dispatch(favoritesList(locationFineDustInfo));
-  }, [locationFineDustInfo, dispatch]);
+    let concatList: any = [];
 
-  const cityCheckHandler = (id: string) => {
-    setLocationFineDustInfo(
-      locationFineDustInfo.map((item: LocationFineDustInfo) =>
-        item.stationName === id ? { ...item, isCheck: !item.isCheck } : item
-      )
+    if (checkedListDB.length && userEmail) {
+      const arrayList = Object.values(checkedListDB[0][userEmail]);
+      if (arrayList.length) {
+        concatList = arrayList.reduce((acc: any, cur) => {
+          return acc.concat(cur);
+        });
+      }
+    }
+    setFineDustInfo(concatList);
+  }, [checkedListDB, userEmail]);
+
+  const filterList = useMemo(() => {
+    const filterItem = fineDustInfo.filter((item: FilterItem) => {
+      return item.isCheck;
+    });
+    return filterItem;
+  }, [fineDustInfo]);
+
+  useLayoutEffect(() => {
+    const userEmailSplit: string | undefined = userEmail?.split('@')[0];
+    setUserName(userEmailSplit);
+  }, [userEmail]);
+
+  useEffect(() => {
+    dispatch(getFavoriteList());
+  }, [dispatch]);
+
+  const cityCheckHandler = (post: Post) => {
+    const fineDustInfoList: Post[] = [];
+    fineDustInfo.forEach((item: Post) => {
+      if (item.cityName === post.cityName) {
+        fineDustInfoList.push(item);
+      }
+    });
+
+    const checkFineDustDispatch = fineDustInfoList.map((item: any) =>
+      item.stationName === post.stationName
+        ? { ...item, isCheck: !item.isCheck }
+        : item
     );
+
+    const checkFineDustview = fineDustInfo.map((item: any) =>
+      item.stationName === post.stationName
+        ? { ...item, isCheck: !item.isCheck }
+        : item
+    );
+    setFineDustInfo(checkFineDustview);
+    dispatch(updateFavoriteList(post.cityName));
+    dispatch(favoritesList(checkFineDustDispatch));
   };
 
   return (
     <div>
-      <TitleSpace title="favorites" userName="hyun jea cho" />
+      <TitleSpace title="favorites" userName={userName} />
       <LocationItemList
         mapList={filterList}
         cityCheckHandler={cityCheckHandler}
       />
+      <Gnb />
     </div>
   );
 }

@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   }
   @media screen and (max-width: 390px) {
     & .titleSpace {
-      height: 31.6351vh;
+      height: 28vh;
     }
   }
 `;

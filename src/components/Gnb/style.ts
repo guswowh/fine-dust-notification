@@ -5,6 +5,57 @@ interface Props {
 }
 
 const Wrapper = styled.div`
+  & .dropDownMenuContainer {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    text-align: right;
+    & .onIcon {
+      width: 10.4rem;
+      box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #ffffff;
+      border-radius: 50%;
+      display: inline-flex;
+    }
+
+    & .menuContainer {
+      margin-top: 2.4rem;
+      padding: 32px 2rem;
+      background-color: #fff;
+      box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #ffffff;
+      border-radius: 2.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      & .button {
+        width: 20vh !important;
+        background: #9bb4f6;
+        box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16),
+          -4px -4px 10px #ffffff;
+        border-radius: 1.6rem;
+        height: 6.4rem;
+        margin-bottom: 2.4rem;
+        font-size: 3rem;
+        color: #fff;
+        width: 100%;
+      }
+      & a:last-child .button {
+        margin-bottom: 0;
+      }
+    }
+    @media screen and (max-width: 390px) {
+      & .menuContainer {
+      }
+    }
+  }
+  @media screen and (max-width: 390px) {
+    & .dropDownMenuContainer {
+      top: 2.8rem;
+      right: 2.8rem;
+      & .onIcon {
+        width: 8rem;
+      }
+    }
+  }
   & .contents {
     position: fixed;
     bottom: 0;
@@ -18,6 +69,21 @@ const Wrapper = styled.div`
     );
     display: flex;
     justify-content: center;
+    & .submitButton {
+      width: 100%;
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #9bb4f6;
+      box-shadow: 12px 12px 28px rgba(13, 39, 80, 0.16), -4px -4px 10px #ffffff;
+      border-radius: 24px;
+      border-radius: 2.4rem;
+      margin: 0 4rem;
+      color: #fff;
+      font-size: 4rem;
+      text-transform: capitalize;
+    }
     > ul {
       display: flex;
       justify-content: center;
